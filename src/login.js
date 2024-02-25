@@ -1,10 +1,13 @@
-// Osittainen kirjautumis-funktio => jatkuu palvelinpuolella
+/* Osittainen kirjautumis-funktio
+implementaatio => määrittele variablet username ja password,
+fetch() API:lla => /login endpoint palvelimen handleriin,
+*/
 
 function login() {
   var username;
   var password;
 
-  // Palvelimelle pyyntö
+  // Palvelimelle lähtevä pyyntö (JSON muodossa)
   fetch("/login", {
     method: "POST",
     headers: {
