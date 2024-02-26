@@ -8,6 +8,7 @@ const DrawingArea = () => {
   const renderGate = (gate) => {
     switch (gate.type) {
       case 'AND': return <AndGate key={gate.id} />;
+      //menee defaulttiin aina jostain syystä
       default: return null; 
     }
   }
@@ -15,7 +16,11 @@ const DrawingArea = () => {
   return (
     <div className="drawing-area">
       {gates.map((gate) => (
-        <div key={gate.id} style={{ position: 'absolute', left: gate.position.x, top: gate.position.y }}>
+        <div key={gate.id} style={{ 
+            position: 'absolute', 
+            left: gate.position?.x || 100,
+            top: gate.position?.y || 100 
+          }}>
           {renderGate(gate)}
         </div>
       ))}
