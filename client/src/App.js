@@ -2,7 +2,7 @@ import React from "react";
 import logo from "./logo.svg";
 import DrawingArea from './components/DrawingArea';
 import Toolbar from './components/Toolbar';
-import login from './components/login';
+import Login from './components/Login';
 import "./App.css";
 
 function App() {
