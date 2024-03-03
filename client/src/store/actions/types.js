@@ -1,2 +1,3 @@
 export const ADD_GATE = 'ADD_GATE';
 export const DELETE_GATE = 'DELETE_GATE';
+export const SET_CURSOR_POSITION = 'SET_CURSOR_POSITION';

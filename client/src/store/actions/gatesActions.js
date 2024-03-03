@@ -2,7 +2,7 @@ import { ADD_GATE, DELETE_GATE } from './types';
 
 export const AddGate = (gateType, position) => ({
   type: ADD_GATE,
-  payload: { position } 
+  payload: { gateType, position } 
 });
 
 export const DeleteGate = (gateId) => ({

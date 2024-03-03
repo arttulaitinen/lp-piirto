@@ -5,11 +5,12 @@ const initialState = [];
 const gatesReducer = (state = initialState, action) => {
   switch (action.type) {
     case 'ADD_GATE':
+      console.log(state)
       return [
         ...state,
         {
           id: uuidv4(), 
-          type: action.payload.gateType,
+          gateType: action.payload.gateType,
           position: action.payload.position 
         }
       ];

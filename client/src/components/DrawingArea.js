@@ -1,31 +1,48 @@
-import React from 'react';
-import { useSelector } from 'react-redux'; 
-import AndGate from './gates/AndGate';
+import React from "react";
+import { useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
+import AndGate from "./gates/AndGate";
+import { setCursorPosition } from "../store/actions/cursorActions";
 
 const DrawingArea = () => {
-  const gates = useSelector(state => state.gates); 
+  const dispatch = useDispatch();
+  const gates = useSelector((state) => state.gates);
+  const cursor = useSelector((state) => state.cursor);
+
+  const handleClick = (event) => {
+    const position = { x: event.clientX, y: event.clientY };
+    console.log("Clicked at:", position);
+    dispatch(setCursorPosition(position));
+    console.log(cursor)
+  }
 
   const renderGate = (gate) => {
     switch (gate.type) {
-      case 'AND': return <AndGate key={gate.id} />;
+      case "AND":
+        return <AndGate key={gate.id} />;
       //menee defaulttiin aina jostain syystä
-      default: return null; 
+      default:
+        console.log(gates);
+        return <AndGate key={gate.id} />;
     }
-  }
+  };
 
   return (
-    <div className="drawing-area">
+    <div className="drawing-area" onClick={handleClick}>
       {gates.map((gate) => (
-        <div key={gate.id} style={{ 
-            position: 'absolute', 
-            left: gate.position?.x || 100,
-            top: gate.position?.y || 100 
-          }}>
+        <div
+          key={gate.id}
+          style={{
+            position: "absolute",
+            left: gate.position?.x,
+            top: gate.position?.y,
+          }}
+        >
           {renderGate(gate)}
         </div>
       ))}
     </div>
   );
-}
+};
 
 export default DrawingArea;

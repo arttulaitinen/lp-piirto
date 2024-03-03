@@ -5,6 +5,7 @@ const initialState = {
   gates: [],
   connections: [],
   isGridVisible: false,
+  cursor: { x: 0, y: 0 }
   };
 
 export const store = configureStore({
