@@ -2,28 +2,55 @@
 implementaatio => määrittele variablet username ja password,
 fetch() API:lla => /login endpoint palvelimen handleriin,
 */
+const login = () => {
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
+  const [error, serError] = useState("");
 
-function login() {
-  var username;
-  var password;
+  const handleUsernameChange = (event) => {
+    setUsername(event.target.value);
+  }
+  const handlePasswordChange = (event) => {
+    setPassword(event.target.value);
+  }
 
-  // Palvelimelle lähtevä pyyntö (JSON muodossa)
-  fetch("/login", {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify({ username: username, password: password }),
-  })
-    .then((response) => {
-      if (response.ok) {
-        return response.json();
-      } else {
-        throw new Error("Invalid username or password");
-      }
+  const handleLogin = () => {
+    var username;
+    var password;
+
+    // Palvelimelle lähtevä pyyntö (JSON muodossa)
+    fetch("/login", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ username: username, password: password }),
     })
-    .then((data) => {
-      // Kirjautuminen onnistui
-      console.log(data);
-    });
-}
+      .then((response) => {
+        if (response.ok) {
+          return response.json();
+        } else {
+          throw new Error("Invalid username or password");
+        }
+      })
+      .then((data) => {
+        // Kirjautuminen onnistui
+        console.log(data);
+      })
+      .catch((error) => {
+        // Kirjautuminen epäonnistui
+        console.error("Error logging in", error);
+      });
+  }
+  return (
+    <div>
+      <h2>Login</h2>
+      <input type="text" placeholder="Käyttäjänimi" value={username} onChange={handleUsernameChange} />
+      <input type="password" placeholder="Salasana" value={password} onChange={handlePasswordChange} />
+      <button onClick={handleLogin}>Login</button>
+      {error && <p>{error}</p>}
+    </div> 
+  );
+};
+
+export default login;
