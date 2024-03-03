@@ -5,7 +5,11 @@ const path = require("path");
 const app = express();
 const PORT = 3000;
 
-// Login data (korjataan myöhemmin -> tietokanta)
+/* Kirjautumisen muuttujat
+  Tässä esimerkissä käyttäjät ovat kovakoodattu
+  Tietokannasta tuotaisiin käyttäjät ja salasanat
+  Katso Post.js, postRoutes.js ja .env
+*/
 const users = [
   { username: "admin", password: "admin" },
   { username: "user", password: "user" },

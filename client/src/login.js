@@ -1,4 +1,4 @@
-/* Osittainen kirjautumis-funktio
+/* Kirjautumisen front-end funktio.
 implementaatio => määrittele variablet username ja password,
 fetch() API:lla => /login endpoint palvelimen handleriin,
 */
