@@ -8,7 +8,7 @@ const PORT = 3000;
 /* Kirjautumisen muuttujat
   Tässä esimerkissä käyttäjät ovat kovakoodattu
   Tietokannasta tuotaisiin käyttäjät ja salasanat
-  Katso Post.js, postRoutes.js ja .env
+  Katso Post.js ja .env
 */
 const users = [
   { username: "admin", password: "admin" },
