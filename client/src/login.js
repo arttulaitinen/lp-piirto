@@ -31,7 +31,7 @@ const login = () => {
         if (response.ok) {
           return response.json();
         } else {
-          throw new Error("Invalid username or password");
+          throw new Error("Virheellinen käyttäjätunnus tai salasana");
         }
       })
       .then((data) => {
@@ -40,7 +40,7 @@ const login = () => {
       })
       .catch((error) => {
         // Kirjautuminen epäonnistui
-        console.error("Error logging in", error);
+        console.error("Kirjautuminen epäonnistui", error);
       });
   }
   return (
