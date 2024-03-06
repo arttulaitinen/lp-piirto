@@ -2,7 +2,6 @@ import React from "react";
 import { useSelector, useDispatch } from "react-redux";
 //LISÄÄ LOPUT ACTIONIT
 import { AddGate } from "../store/actions/gatesActions";
-import { setCursorPosition } from "../store/actions/cursorActions";
 
 export default function Toolbar({ AddConnection, ShowInfo, ToggleGrid, Save }) {
   const dispatch = useDispatch();

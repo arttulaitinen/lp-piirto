@@ -14,6 +14,11 @@ const gatesReducer = (state = initialState, action) => {
           position: action.payload.position 
         }
       ];
+    case 'UPDATE_GATE_POSITIONS':
+      return {
+        ...state,
+        gates: action.payload,
+      };
     // laajenna 
     default:
       return state;
