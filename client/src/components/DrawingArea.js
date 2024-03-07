@@ -3,6 +3,7 @@ import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
 import AndGate from "./gates/AndGate";
 import { setCursorPosition } from "../store/actions/cursorActions";
+import "./DrawingArea.css";
 
 const DrawingArea = () => {
   const dispatch = useDispatch();
@@ -13,8 +14,8 @@ const DrawingArea = () => {
     const position = { x: event.clientX, y: event.clientY };
     console.log("Clicked at:", position);
     dispatch(setCursorPosition(position));
-    console.log(cursor)
-  }
+    console.log(cursor);
+  };
 
   const renderGate = (gate) => {
     switch (gate.type) {
@@ -28,19 +29,21 @@ const DrawingArea = () => {
   };
 
   return (
-    <div className="drawing-area" onClick={handleClick}>
-      {gates.map((gate) => (
-        <div
-          key={gate.id}
-          style={{
-            position: "absolute",
-            left: gate.position?.x,
-            top: gate.position?.y,
-          }}
-        >
-          {renderGate(gate)}
-        </div>
-      ))}
+    <div class="container">
+      <div className="drawing-area" onClick={handleClick}>
+        {gates.map((gate) => (
+          <div
+            key={gate.id}
+            style={{
+              position: "relative",
+              left: gate.position?.x,
+              top: gate.position?.y,
+            }}
+          >
+            {renderGate(gate)}
+          </div>
+        ))}
+      </div>
     </div>
   );
 };
