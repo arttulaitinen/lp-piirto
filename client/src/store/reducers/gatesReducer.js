@@ -5,7 +5,6 @@ const initialState = [];
 const gatesReducer = (state = initialState, action) => {
   switch (action.type) {
     case 'ADD_GATE':
-      console.log(state)
       return [
         ...state,
         {

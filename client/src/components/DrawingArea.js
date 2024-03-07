@@ -18,13 +18,11 @@ const DrawingArea = () => {
   };
 
   const renderGate = (gate) => {
-    switch (gate.type) {
+    switch (gate.gateType) {
       case "AND":
         return <AndGate key={gate.id} />;
-      //menee defaulttiin aina jostain syystä
       default:
-        console.log(gates);
-        return <AndGate key={gate.id} />;
+        return;
     }
   };
 

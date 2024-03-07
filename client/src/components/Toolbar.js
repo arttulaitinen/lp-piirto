@@ -11,16 +11,32 @@ export default function Toolbar({ AddConnection, ShowInfo, ToggleGrid, Save }) {
     <div className="toolbar">
       <button
         type="button"
-        class="border btn btn-light"
-        onClick={() => {
-          //POISTA HARDKOODATUT KOORDINAATIT
-          const position = { x: 150, y: 150 };
-          console.log("AddGate payload:", { gateType: "AND", position });
-          dispatch(AddGate("AND", position));
-        }}
+        class="border btn btn-light dropdown-toggle"
+        id="dropdownMenuButton"
+        data-toggle="dropdown"
+        aria-haspopup="true"
+        aria-expanded="false"
       >
         Portit
       </button>
+      <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+        <a
+          class="dropdown-item"
+          onClick={() => {
+            //POISTA HARDKOODATUT KOORDINAATIT
+            const position = { x: 425, y: 405 };
+            dispatch(AddGate("AND", position));
+          }}
+        >
+          AND
+        </a>
+        <a class="dropdown-item">OR</a>
+        <a class="dropdown-item">NOT</a>
+        <a class="dropdown-item">NAND</a>
+        <a class="dropdown-item">NOR</a>
+        <a class="dropdown-item">XOR</a>
+        <a class="dropdown-item">XNOR</a>
+      </div>
 
       <button
         type="button"
