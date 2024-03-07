@@ -2,6 +2,12 @@ import React from "react";
 import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
 import AndGate from "./gates/AndGate";
+import OrGate from "./gates/OrGate";
+import NotGate from "./gates/NotGate";
+import NandGate from "./gates/NandGate";
+import NorGate from "./gates/NorGate";
+import XorGate from "./gates/XorGate";
+import XnorGate from "./gates/XnorGate";
 import { setCursorPosition } from "../store/actions/cursorActions";
 import "./DrawingArea.css";
 
@@ -21,6 +27,18 @@ const DrawingArea = () => {
     switch (gate.gateType) {
       case "AND":
         return <AndGate key={gate.id} />;
+      case "OR":
+        return <OrGate key={gate.id} />;
+      case "NOT":
+        return <NotGate key={gate.id} />;
+      case "NAND":
+        return <NandGate key={gate.id} />;
+      case "NOR":
+        return <NorGate key={gate.id} />;      
+      case "XOR":
+        return <XorGate key={gate.id} />;  
+      case "XNOR":
+        return <XnorGate key={gate.id} />;                  
       default:
         return;
     }
