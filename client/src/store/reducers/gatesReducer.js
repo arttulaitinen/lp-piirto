@@ -1,24 +1,29 @@
-import { v4 as uuidv4 } from 'uuid';
+import { v4 as uuidv4 } from "uuid";
 
-const initialState = [];
+const initialState = {
+  gates: []
+};
 
 const gatesReducer = (state = initialState, action) => {
   switch (action.type) {
-    case 'ADD_GATE':
+    case "ADD_GATE":
       return [
         ...state,
         {
-          id: uuidv4(), 
+          id: uuidv4(),
           gateType: action.payload.gateType,
-          position: action.payload.position 
-        }
+          position: action.payload.position,
+        },
       ];
-    case 'UPDATE_GATE_POSITIONS':
+    case "UPDATE_GATE_POSITION":
+      const { gateId, position } = action.payload;
       return {
         ...state,
-        gates: action.payload,
+        gates: state.gates.map((gate) =>
+          gate.id === gateId ? { ...gate, position } : gate
+        ),
       };
-    // laajenna 
+    // laajenna
     default:
       return state;
   }

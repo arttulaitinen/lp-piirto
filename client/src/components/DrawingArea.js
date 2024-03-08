@@ -9,7 +9,9 @@ import NorGate from "./gates/NorGate";
 import XorGate from "./gates/XorGate";
 import XnorGate from "./gates/XnorGate";
 import { setCursorPosition } from "../store/actions/cursorActions";
+import { updateGatePosition } from "../store/actions/gatesActions";
 import "./DrawingArea.css";
+import Draggable from "react-draggable";
 
 const DrawingArea = () => {
   const dispatch = useDispatch();
@@ -18,27 +20,75 @@ const DrawingArea = () => {
 
   const handleClick = (event) => {
     const position = { x: event.clientX, y: event.clientY };
-    console.log("Clicked at:", position);
+    console.log("Clicked at:", position, gates.gateType);
     dispatch(setCursorPosition(position));
     console.log(cursor);
+    console.log(gates);
+  };
+
+  const handleStop = (event, data, gateId) => {
+    console.log(gateId, { x: data.x, y: data.y });
+    //dispatch(updateGatePosition(gateId, { x: data.x, y: data.y }));
   };
 
   const renderGate = (gate) => {
     switch (gate.gateType) {
       case "AND":
-        return <AndGate key={gate.id} />;
+        return (
+          <Draggable onStop={(e, data) => handleStop(e, data, gate.id)}>
+            <div>
+              <AndGate />
+            </div>
+          </Draggable>
+        );
       case "OR":
-        return <OrGate key={gate.id} />;
+        return (
+          <Draggable onStop={(e, data) => handleStop(e, data, gate.id)}>
+            <div>
+              <OrGate />
+            </div>
+          </Draggable>
+        );
       case "NOT":
-        return <NotGate key={gate.id} />;
+        return (
+          <Draggable onStop={(e, data) => handleStop(e, data, gate.id)}>
+            <div>
+              <NotGate />
+            </div>
+          </Draggable>
+        );
       case "NAND":
-        return <NandGate key={gate.id} />;
+        return (
+          <Draggable onStop={(e, data) => handleStop(e, data, gate.id)}>
+            <div>
+              <NandGate />
+            </div>
+          </Draggable>
+        );
       case "NOR":
-        return <NorGate key={gate.id} />;      
+        return (
+          <Draggable onStop={(e, data) => handleStop(e, data, gate.id)}>
+            <div>
+              <NorGate />
+            </div>
+          </Draggable>
+        );
       case "XOR":
-        return <XorGate key={gate.id} />;  
+        return (
+          <Draggable onStop={(e, data) => handleStop(e, data, gate.id)}>
+            <div>
+              <XorGate />
+            </div>
+          </Draggable>
+        );
       case "XNOR":
-        return <XnorGate key={gate.id} />;                  
+        return (
+          <Draggable onStop={(e, data) => handleStop(e, data, gate.id)}>
+            <div>
+              <XnorGate />
+            </div>
+          </Draggable>
+        );
       default:
         return;
     }

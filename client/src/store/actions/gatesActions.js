@@ -1,4 +1,4 @@
-import { ADD_GATE, DELETE_GATE } from './types';
+import { ADD_GATE, DELETE_GATE, UPDATE_GATE_POSITION } from './types';
 
 export const AddGate = (gateType, position) => {
   return {
@@ -14,9 +14,9 @@ export const DeleteGate = (gateId) => {
   };
 };
 
-export const updateGatePositions = (updatedGates) => {
+export const updateGatePosition = (gateId, position) => {
   return {
-    type: 'UPDATE_GATE_POSITIONS',
-    payload: updatedGates,
+    type: UPDATE_GATE_POSITION,
+    payload: { gateId, position } 
   };
 };
