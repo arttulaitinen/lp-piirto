@@ -1,4 +1,5 @@
 const posts = require("../models/Post");
+import writeData from "../utils/jsonUtils";
 
 exports.users = async (req, res) => {
   const users = await posts.users();
@@ -25,3 +26,12 @@ exports.register = async (req, res) => {
   }
 };
 
+exports.saveProgress = async (req, res) => { 
+  const { username, progress } = req.body;
+  try {
+    await posts.saveProgress(username, progress);
+    res.json({ success: true, message: "Progress saved" });
+  } catch (error) {
+    res.json({ success: false, message: "Progress not saved" });
+  }
+};

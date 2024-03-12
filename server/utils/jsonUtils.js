@@ -26,10 +26,10 @@ function readData() {
         return [];
     }
 }
-function writeData(data) {
+export const writeData = (data) => {
     try {
         fs.writeFileSync('server/data/data.json', JSON.stringify(data, null, 2));
     } catch (error) {
         console.error('Error writing data', error);
     }
-}
+};
