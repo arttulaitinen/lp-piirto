@@ -18,8 +18,14 @@ const users = [
 // Middleware
 app.use(bodyParser.json());
 
+// Save endpoint
+app.post("/users/save", (req, res) => {
+  console.log(req.body);
+  res.json({ success: true, message: "Data saved" });
+});
+
 // Login endpoint
-app.post("/api/login", (req, res) => {
+app.post("/users/login", (req, res) => {
   const { username, password } = req.body;
   const user = users.find(
     (u) => u.username === username && u.password === password
