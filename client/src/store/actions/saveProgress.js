@@ -2,7 +2,7 @@ import {serializeState} from '../../utils/serializeState'
 
 const saveProgress = (reduxState) => { 
     const serializedState = serializeState(reduxState)
-    fetch('/save', {
+    fetch('/users/save', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
