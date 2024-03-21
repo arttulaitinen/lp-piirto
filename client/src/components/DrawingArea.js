@@ -35,7 +35,7 @@ const DrawingArea = () => {
     switch (gate.gateType) {
       case "AND":
         return (
-          <Draggable onStop={(e, data) => handleStop(e, data, gate.id)}>
+          <Draggable bounds={{ top: -400, left: -420, right: 420, bottom: 460 }} onStop={(e, data) => handleStop(e, data, gate.id)}>
             <div>
               <AndGate />
             </div>
@@ -43,7 +43,7 @@ const DrawingArea = () => {
         );
       case "OR":
         return (
-          <Draggable onStop={(e, data) => handleStop(e, data, gate.id)}>
+          <Draggable bounds={{ top: -400, left: -420, right: 420, bottom: 460 }} onStop={(e, data) => handleStop(e, data, gate.id)}>
             <div>
               <OrGate />
             </div>
@@ -51,7 +51,7 @@ const DrawingArea = () => {
         );
       case "NOT":
         return (
-          <Draggable onStop={(e, data) => handleStop(e, data, gate.id)}>
+          <Draggable bounds={{ top: -400, left: -420, right: 420, bottom: 460 }} onStop={(e, data) => handleStop(e, data, gate.id)}>
             <div>
               <NotGate />
             </div>
@@ -59,7 +59,7 @@ const DrawingArea = () => {
         );
       case "NAND":
         return (
-          <Draggable onStop={(e, data) => handleStop(e, data, gate.id)}>
+          <Draggable bounds={{ top: -400, left: -420, right: 420, bottom: 460 }} onStop={(e, data) => handleStop(e, data, gate.id)}>
             <div>
               <NandGate />
             </div>
@@ -67,7 +67,7 @@ const DrawingArea = () => {
         );
       case "NOR":
         return (
-          <Draggable onStop={(e, data) => handleStop(e, data, gate.id)}>
+          <Draggable bounds={{ top: -400, left: -420, right: 420, bottom: 460 }} onStop={(e, data) => handleStop(e, data, gate.id)}>
             <div>
               <NorGate />
             </div>
@@ -75,7 +75,7 @@ const DrawingArea = () => {
         );
       case "XOR":
         return (
-          <Draggable onStop={(e, data) => handleStop(e, data, gate.id)}>
+          <Draggable bounds={{ top: -400, left: -420, right: 420, bottom: 460 }} onStop={(e, data) => handleStop(e, data, gate.id)}>
             <div>
               <XorGate />
             </div>
@@ -83,7 +83,7 @@ const DrawingArea = () => {
         );
       case "XNOR":
         return (
-          <Draggable onStop={(e, data) => handleStop(e, data, gate.id)}>
+          <Draggable bounds={{ top: -400, left: -420, right: 420, bottom: 460 }} onStop={(e, data) => handleStop(e, data, gate.id)}>
             <div>
               <XnorGate />
             </div>
