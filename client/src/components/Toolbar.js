@@ -2,9 +2,10 @@ import React from "react";
 import { useSelector, useDispatch } from "react-redux";
 //LISÄÄ LOPUT ACTIONIT
 import { AddGate } from "../store/actions/gatesActions";
+import { toggleGrid } from "../store/actions/gridActions";
 import "./Toolbar.css";
 
-export default function Toolbar({ AddConnection, ShowInfo, ToggleGrid, Save }) {
+export default function Toolbar({ AddConnection, ShowInfo, Save }) {
   const dispatch = useDispatch();
 
   return (
@@ -65,7 +66,7 @@ export default function Toolbar({ AddConnection, ShowInfo, ToggleGrid, Save }) {
       <button
         type="button"
         class="border btn btn-light mx-1"
-        onClick={() => dispatch(ToggleGrid())}
+        onClick={() => dispatch(toggleGrid())}
       >
         Ruudukko
       </button>
