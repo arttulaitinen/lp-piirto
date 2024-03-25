@@ -20,8 +20,19 @@ app.use(bodyParser.json());
 
 // Save endpoint
 app.post("/users/save", (req, res) => {
-  console.log(req.body);
-  res.json({ success: true, message: "Data saved" });
+  const { userId, state } = req.body;
+  // Luetaan vanha data
+  let currentData = [];
+  try {
+    currentData = JSON.parse(fs.readFileSync("data.json"));
+  } catch (e) {
+    console.log("Error reading data:", e);
+  }
+  // Lisätään uusi data
+  oldData.push({ userId, state });
+  // Kirjoitetaan uusi data ja käyttäjän ID
+  fs.writeFileSync("data.json", JSON.stringify(currentData));
+  res.sendStatus(200);
 });
 
 // Login endpoint

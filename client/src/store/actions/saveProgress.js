@@ -1,13 +1,13 @@
 import { serializeState } from "../../utils/serializeState";
 
-const saveProgress = (reduxState) => {
+const saveProgress = (userId, reduxState) => {
   const serializedState = serializeState(reduxState);
   fetch("/users/save", {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
     },
-    body: JSON.stringify({ state: serializedState }),
+    body: JSON.stringify({ userId, state: serializedState }),
   })
     .then((response) => {
       if (response.ok) {
