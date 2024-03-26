@@ -57,3 +57,17 @@ exports.updateUser = async (req, res, next) => {
     });
   }
 };
+exports.deleteUser = async (req, res, next) => {
+  try {
+    await Post.deleteUser(req.params.id);
+    res.status(200).json({
+      success: true,
+      data: {},
+    });
+  } catch (error) {
+    res.status(500).json({
+      success: false,
+      error: error.message,
+    });
+  }
+};
