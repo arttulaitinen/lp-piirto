@@ -1,37 +1,59 @@
 const posts = require("../models/Post");
 import writeData from "../utils/jsonUtils";
 
-exports.users = async (req, res) => {
-  const users = await posts.users();
-  res.json(users);
-};
-
-exports.login = async (req, res) => {
-  const { username, password } = req.body;
-  const user = await posts.login(username, password);
-  if (user) {
-    res.json({ success: true, message: "Login successful" });
-  } else {
-    res.json({ success: false, message: "Invalid credentials" });
-  }
-};
-
-exports.register = async (req, res) => {
-  const { username, password } = req.body;
-  const user = await posts.register(username, password);
-  if (user) {
-    res.json({ success: true, message: "Registration successful" });
-  } else {
-    res.json({ success: false, message: "Registration failed" });
-  }
-};
-
-exports.saveProgress = async (req, res) => { 
-  const { username, progress } = req.body;
+exports.getUsers = async (req, res, next) => {
   try {
-    await posts.saveProgress(username, progress);
-    res.json({ success: true, message: "Progress saved" });
+    const [users, _] = await Post.fetchAll();
+    res.status(200).json({
+      success: true,
+      data: data,
+    });
   } catch (error) {
-    res.json({ success: false, message: "Progress not saved" });
+    res.status(500).json({
+      success: false,
+      error: error.message,
+    });
+  }
+};
+exports.getUser = async (req, res, next) => {
+  try {
+    const user = await Post.fetchUser(req.params.id);
+    res.status(200).json({
+      success: true,
+      data: user,
+    });
+  } catch (error) {
+    res.status(500).json({
+      success: false,
+      error: error.message,
+    });
+  }
+};
+exports.createUser = async (req, res, next) => {
+  try {
+    const user = await Post.saveUser(req.body);
+    res.status(201).json({
+      success: true,
+      data: user,
+    });
+  } catch (error) {
+    res.status(500).json({
+      success: false,
+      error: error.message,
+    });
+  }
+};
+exports.updateUser = async (req, res, next) => {
+  try {
+    const user = await Post.putUser(req.params.id, req.body);
+    res.status(200).json({
+      success: true,
+      data: user,
+    });
+  } catch (error) {
+    res.status(500).json({
+      success: false,
+      error: error.message,
+    });
   }
 };

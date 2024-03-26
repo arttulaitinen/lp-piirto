@@ -9,7 +9,7 @@ const pool = mysql.createPool({
   database: process.env.DB_DATABASE,
 });
 
-let sql = "SELECT * FROM users";
+let sql = "SELECT * FROM tiedot";
 
 pool.execute(sql, (err, result) => {
   if (err) {
