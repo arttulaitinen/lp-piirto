@@ -23,15 +23,14 @@ const DrawingArea = () => {
   const handleClick = (event) => {
     const position = { x: event.clientX, y: event.clientY };
     console.log("Clicked at:", position, gates.gateType);
-    dispatch(setCursorPosition(position));
+    //dispatch(setCursorPosition(position));
     console.log(cursor);
     console.log(gates);
-    console.log(isGridVisible);
   };
 
-  const handleStop = (event, data, gateId) => {
-    console.log(gateId, { x: data.x, y: data.y });
-    //dispatch(updateGatePosition(gateId, { x: data.x, y: data.y }));
+  const handleStop = (event, data, gateId, gateType) => {
+    console.log("Stopped at:", gateId, gateType, { x: data.x, y: data.y });
+    dispatch(updateGatePosition(gateId, gateType, { x: data.x, y: data.y}));
   };
 
   const renderGate = (gate) => {
@@ -39,8 +38,8 @@ const DrawingArea = () => {
       case "AND":
         return (
           <Draggable
-            bounds={{ top: -400, left: -420, right: 420, bottom: 460 }}
-            onStop={(e, data) => handleStop(e, data, gate.id)}
+            //bounds={{ top: -400, left: -420, right: 420, bottom: 460 }}
+            onStop={(e, data) => handleStop(e, data, gate.id, gate.gateType)}
           >
             <div>
               <AndGate />
@@ -51,7 +50,7 @@ const DrawingArea = () => {
         return (
           <Draggable
             bounds={{ top: -400, left: -420, right: 420, bottom: 460 }}
-            onStop={(e, data) => handleStop(e, data, gate.id)}
+            onStop={(e, data) => handleStop(e, data, gate.id, gate.gateType)}
           >
             <div>
               <OrGate />
@@ -62,7 +61,7 @@ const DrawingArea = () => {
         return (
           <Draggable
             bounds={{ top: -400, left: -420, right: 420, bottom: 460 }}
-            onStop={(e, data) => handleStop(e, data, gate.id)}
+            onStop={(e, data) => handleStop(e, data, gate.id, gate.gateType)}
           >
             <div>
               <NotGate />
@@ -73,7 +72,7 @@ const DrawingArea = () => {
         return (
           <Draggable
             bounds={{ top: -400, left: -420, right: 420, bottom: 460 }}
-            onStop={(e, data) => handleStop(e, data, gate.id)}
+            onStop={(e, data) => handleStop(e, data, gate.id, gate.gateType)}
           >
             <div>
               <NandGate />
@@ -84,7 +83,7 @@ const DrawingArea = () => {
         return (
           <Draggable
             bounds={{ top: -400, left: -420, right: 420, bottom: 460 }}
-            onStop={(e, data) => handleStop(e, data, gate.id)}
+            onStop={(e, data) => handleStop(e, data, gate.id, gate.gateType)}
           >
             <div>
               <NorGate />
@@ -95,7 +94,7 @@ const DrawingArea = () => {
         return (
           <Draggable
             bounds={{ top: -400, left: -420, right: 420, bottom: 460 }}
-            onStop={(e, data) => handleStop(e, data, gate.id)}
+            onStop={(e, data) => handleStop(e, data, gate.id, gate.gateType)}
           >
             <div>
               <XorGate />
@@ -106,7 +105,7 @@ const DrawingArea = () => {
         return (
           <Draggable
             bounds={{ top: -400, left: -420, right: 420, bottom: 460 }}
-            onStop={(e, data) => handleStop(e, data, gate.id)}
+            onStop={(e, data) => handleStop(e, data, gate.id, gate.gateType)}
           >
             <div>
               <XnorGate />
@@ -119,13 +118,18 @@ const DrawingArea = () => {
   };
 
   return (
-    <div class="container">
-      <div className={`drawing-area ${isGridVisible ? "gridlines" : "drawing-area"}`} onClick={handleClick}>
+    <div className="container">
+      <div
+        className={`drawing-area ${
+          isGridVisible ? "gridlines" : "drawing-area"
+        }`}
+        onClick={handleClick}
+      >
         {gates.map((gate) => (
           <div
             key={gate.id}
             style={{
-              position: "relative",
+              position: "static",
               left: gate.position?.x,
               top: gate.position?.y,
             }}

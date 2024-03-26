@@ -23,27 +23,27 @@ export default function Toolbar({ AddConnection, ShowInfo, Save }) {
       <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
         <a
           class="dropdown-item"
-          onClick={() => {const position = { x: 425, y: 405 }; dispatch(AddGate("AND", position)); }}
+          onClick={() => {dispatch(AddGate("AND", { x: 0, y: 0 })); }}
         >
           AND
         </a>
         <a class="dropdown-item"
-        onClick={() => {const position = { x: 425, y: 405 }; dispatch(AddGate("OR", position)); }}
+        onClick={() => {dispatch(AddGate("OR", { x: 0, y: 0 })); }}
         >OR</a>
         <a class="dropdown-item"
-        onClick={() => {const position = { x: 425, y: 405 }; dispatch(AddGate("NOT", position)); }}
+        onClick={() => {dispatch(AddGate("NOT", { x: 0, y: 0 })); }}
         >NOT</a>
         <a class="dropdown-item"
-        onClick={() => {const position = { x: 425, y: 405 }; dispatch(AddGate("NAND", position)); }}
+        onClick={() => {dispatch(AddGate("NAND", { x: 0, y: 0 })); }}
         >NAND</a>
         <a class="dropdown-item"
-        onClick={() => {const position = { x: 425, y: 405 }; dispatch(AddGate("NOR", position)); }}
+        onClick={() => {dispatch(AddGate("NOR", { x: 0, y: 0 })); }}
         >NOR</a>
         <a class="dropdown-item"
-        onClick={() => {const position = { x: 425, y: 405 }; dispatch(AddGate("XOR", position)); }}
+        onClick={() => {dispatch(AddGate("XOR", { x: 0, y: 0 })); }}
         >XOR</a>
         <a class="dropdown-item"
-        onClick={() => {const position = { x: 425, y: 405 }; dispatch(AddGate("XNOR", position)); }}
+        onClick={() => {dispatch(AddGate("XNOR", { x: 0, y: 0 })); }}
         >XNOR</a>
       </div>
 

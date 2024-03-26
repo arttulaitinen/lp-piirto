@@ -7,16 +7,16 @@ export const AddGate = (gateType, position) => {
   };
 };
 
-export const DeleteGate = (gateId) => {
+export const DeleteGate = (id) => {
   return {
       type: DELETE_GATE,
-      payload: { gateId }
+      payload: { id }
   };
 };
 
-export const updateGatePosition = (gateId, position) => {
+export const updateGatePosition = (id, gateType, position) => {
   return {
     type: UPDATE_GATE_POSITION,
-    payload: { gateId, position } 
+    payload: { id, gateType, position } 
   };
 };

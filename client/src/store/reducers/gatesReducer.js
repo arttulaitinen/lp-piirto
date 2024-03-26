@@ -15,14 +15,14 @@ const gatesReducer = (state = initialState, action) => {
           position: action.payload.position,
         },
       ];
-    case "UPDATE_GATE_POSITION":
-      const { gateId, position } = action.payload;
-      return {
-        ...state,
-        gates: state.gates.map((gate) =>
-          gate.id === gateId ? { ...gate, position } : gate
-        ),
-      };
+case "UPDATE_GATE_POSITION":
+  return state.map((gate) => {
+    if (gate.id === action.payload.id) {
+      return { ...gate, position: action.payload.position };
+    } else {
+      return gate; 
+    }
+  });
     // laajenna
     default:
       return state;
