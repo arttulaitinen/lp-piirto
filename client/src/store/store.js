@@ -4,6 +4,7 @@ import rootReducer from "./reducers";
 const initialState = {
   gates: [],
   connections: [],
+  isConnectMode: false,
   isGridVisible: false,
   cursor: { x: 0, y: 0 },
 };

@@ -1,6 +1,5 @@
 import React from "react";
-import { useSelector } from "react-redux";
-import { useDispatch } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import AndGate from "./gates/AndGate";
 import OrGate from "./gates/OrGate";
 import NotGate from "./gates/NotGate";
@@ -20,17 +19,20 @@ const DrawingArea = () => {
   const cursor = useSelector((state) => state.cursor);
   const isGridVisible = useSelector((state) => state.isGridVisible);
 
-  const handleClick = (event) => {
+  const connections = useSelector((state) => state.connections);
+  const isConnectMode = useSelector((state) => state.isConnectMode);
+
+  const handleClick = (event, gateType) => {
     const position = { x: event.clientX, y: event.clientY };
-    console.log("Clicked at:", position, gates.gateType);
+    console.log("Clicked at:", position, gateType);
     //dispatch(setCursorPosition(position));
-    console.log(cursor);
     console.log(gates);
+    console.log(connections);
+    console.log(isConnectMode);
   };
 
   const handleStop = (event, data, gateId, gateType) => {
-    console.log("Stopped at:", gateId, gateType, { x: data.x, y: data.y });
-    dispatch(updateGatePosition(gateId, gateType, { x: data.x, y: data.y}));
+    dispatch(updateGatePosition(gateId, gateType, { x: data.x, y: data.y }));
   };
 
   const renderGate = (gate) => {
