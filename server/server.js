@@ -2,19 +2,19 @@ const express = require("express");
 const bodyParser = require("body-parser");
 const path = require("path");
 const fs = require("fs");
+const Post = require("./Post");
 
 const app = express();
 const PORT = 3000;
 
-/* Kirjautumisen muuttujat
-  Tässä esimerkissä käyttäjät ovat kovakoodattu
-  Tietokannasta tuotaisiin käyttäjät ja salasanat
-  Katso Post.js ja .env
-*/
-const users = [
-  { username: "admin", password: "admin" },
-  { username: "user", password: "user" },
-];
+// Luetaan kaikki käyttäjät tietokannasta => users[]
+let users = [];
+Post.fetchAll()
+  .then(([rows, fields]) => {
+    users = rows;
+    console.log("Users fetched successfully");
+  })
+  .catch((err) => console.log(err));
 
 // Middleware
 app.use(bodyParser.json());
