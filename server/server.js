@@ -36,6 +36,23 @@ app.post("/users/save", (req, res) => {
   res.sendStatus(200);
 });
 
+// Käyttäjän lisäys endpoint
+app.post("/users/add", (req, res) => {
+  const { username, password } = req.body;
+  const userId = users.length + 1;
+  const user = { userId, username, password };
+  users.push(user);
+  Post.saveUser(user)
+    .then(() => {
+      console.log("User added successfully");
+      res.json({ success: true, message: "User added successfully" });
+    })
+    .catch((err) => {
+      console.log(err);
+      res.json({ success: false, message: "Error adding user" });
+    });
+});
+
 // Login endpoint
 app.post("/users/login", (req, res) => {
   const { username, password } = req.body;
