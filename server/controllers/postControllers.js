@@ -29,20 +29,6 @@ exports.getUser = async (req, res, next) => {
     });
   }
 };
-exports.createUser = async (req, res, next) => {
-  try {
-    const user = await Post.saveUser(req.body);
-    res.status(201).json({
-      success: true,
-      data: user,
-    });
-  } catch (error) {
-    res.status(500).json({
-      success: false,
-      error: error.message,
-    });
-  }
-};
 exports.updateUser = async (req, res, next) => {
   try {
     const user = await Post.putUser(req.params.id, req.body);
