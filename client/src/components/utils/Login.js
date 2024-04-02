@@ -12,17 +12,17 @@ const Login = () => {
 
   const handleUsernameChange = (event) => {
     setUsername(event.target.value);
-  }
+  };
   const handlePasswordChange = (event) => {
     setPassword(event.target.value);
-  }
+  };
 
   const handleLogin = () => {
     var username;
     var password;
 
     // Palvelimelle lähtevä pyyntö (JSON muodossa)
-    fetch("/login", {
+    fetch("users/login", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -44,15 +44,25 @@ const Login = () => {
         // Kirjautuminen epäonnistui
         console.error("Kirjautuminen epäonnistui", error);
       });
-  }
+  };
   return (
     <div>
       <h2>Login</h2>
-      <input type="text" placeholder="Käyttäjänimi" value={username} onChange={handleUsernameChange} />
-      <input type="password" placeholder="Salasana" value={password} onChange={handlePasswordChange} />
+      <input
+        type="text"
+        placeholder="Käyttäjänimi"
+        value={username}
+        onChange={handleUsernameChange}
+      />
+      <input
+        type="password"
+        placeholder="Salasana"
+        value={password}
+        onChange={handlePasswordChange}
+      />
       <button onClick={handleLogin}>Login</button>
       {error && <p>{error}</p>}
-    </div> 
+    </div>
   );
 };
 

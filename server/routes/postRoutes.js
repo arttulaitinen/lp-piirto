@@ -7,5 +7,6 @@ router.route("/users/:id").get(postControllers.getUser);
 router.route("/users/add").post(postControllers.createUser);
 router.route("/users/:id").put(postControllers.updateUser);
 router.route("/users/:id").delete(postControllers.deleteUser);
+router.route("/users/save").get(postControllers.getUserPosts);
 
 module.exports = router;
