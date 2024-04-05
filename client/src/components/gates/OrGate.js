@@ -1,15 +1,13 @@
-import React from 'react';
+import React from "react";
+import "./gates.css";
 
 const OrGate = (props) => (
-  <div style={{ 
-       width: 50, 
-       height: 30, 
-       backgroundColor: 'red',
-       textAlign: 'center' 
-    }} 
-    {...props}>
-    OR 
+  <div
+    className="gates orGate"
+    {...props}
+  >
+    OR
   </div>
-)
-  
-  export default OrGate
+);
+
+export default OrGate;

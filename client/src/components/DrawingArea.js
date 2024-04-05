@@ -3,10 +3,8 @@ import { useSelector, useDispatch } from "react-redux";
 import AndGate from "./gates/AndGate";
 import OrGate from "./gates/OrGate";
 import NotGate from "./gates/NotGate";
-import NandGate from "./gates/NandGate";
-import NorGate from "./gates/NorGate";
-import XorGate from "./gates/XorGate";
-import XnorGate from "./gates/XnorGate";
+import InputGate from "./gates/InputGate";
+import OutputGate from "./gates/OutputGate";
 import { setCursorPosition } from "../store/actions/cursorActions";
 import { updateGatePosition } from "../store/actions/gatesActions";
 import { toggleGrid } from "../store/actions/gridActions";
@@ -40,7 +38,7 @@ const DrawingArea = () => {
       case "AND":
         return (
           <Draggable
-            //bounds={{ top: -400, left: -420, right: 420, bottom: 460 }}
+            //bounds=".drawing-area"
             onStop={(e, data) => handleStop(e, data, gate.id, gate.gateType)}
           >
             <div>
@@ -51,7 +49,6 @@ const DrawingArea = () => {
       case "OR":
         return (
           <Draggable
-            bounds={{ top: -400, left: -420, right: 420, bottom: 460 }}
             onStop={(e, data) => handleStop(e, data, gate.id, gate.gateType)}
           >
             <div>
@@ -62,7 +59,6 @@ const DrawingArea = () => {
       case "NOT":
         return (
           <Draggable
-            bounds={{ top: -400, left: -420, right: 420, bottom: 460 }}
             onStop={(e, data) => handleStop(e, data, gate.id, gate.gateType)}
           >
             <div>
@@ -70,47 +66,23 @@ const DrawingArea = () => {
             </div>
           </Draggable>
         );
-      case "NAND":
+      case "INPUT":
         return (
           <Draggable
-            bounds={{ top: -400, left: -420, right: 420, bottom: 460 }}
             onStop={(e, data) => handleStop(e, data, gate.id, gate.gateType)}
           >
             <div>
-              <NandGate />
+              <InputGate />
             </div>
           </Draggable>
         );
-      case "NOR":
+      case "OUTPUT":
         return (
           <Draggable
-            bounds={{ top: -400, left: -420, right: 420, bottom: 460 }}
             onStop={(e, data) => handleStop(e, data, gate.id, gate.gateType)}
           >
             <div>
-              <NorGate />
-            </div>
-          </Draggable>
-        );
-      case "XOR":
-        return (
-          <Draggable
-            bounds={{ top: -400, left: -420, right: 420, bottom: 460 }}
-            onStop={(e, data) => handleStop(e, data, gate.id, gate.gateType)}
-          >
-            <div>
-              <XorGate />
-            </div>
-          </Draggable>
-        );
-      case "XNOR":
-        return (
-          <Draggable
-            bounds={{ top: -400, left: -420, right: 420, bottom: 460 }}
-            onStop={(e, data) => handleStop(e, data, gate.id, gate.gateType)}
-          >
-            <div>
-              <XnorGate />
+              <OutputGate />
             </div>
           </Draggable>
         );
@@ -122,23 +94,10 @@ const DrawingArea = () => {
   return (
     <div className="container">
       <div
-        className={`drawing-area ${
-          isGridVisible ? "gridlines" : "drawing-area"
-        }`}
+        className={`drawing-area ${isGridVisible ? "gridlines" : ""}`}
         onClick={handleClick}
       >
-        {gates.map((gate) => (
-          <div
-            key={gate.id}
-            style={{
-              position: "static",
-              left: gate.position?.x,
-              top: gate.position?.y,
-            }}
-          >
-            {renderGate(gate)}
-          </div>
-        ))}
+        {gates.map((gate) => renderGate(gate))}
       </div>
     </div>
   );

@@ -26,64 +26,61 @@ export default function Toolbar({ ShowInfo, Save }) {
       >
         Portit
       </button>
-      <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-        <a
-          class="dropdown-item"
-          onClick={() => {
-            dispatch(addGate("AND", { x: 0, y: 0 }));
-          }}
-        >
-          AND
-        </a>
-        <a
-          class="dropdown-item"
-          onClick={() => {
-            dispatch(addGate("OR", { x: 0, y: 0 }));
-          }}
-        >
-          OR
-        </a>
-        <a
-          class="dropdown-item"
-          onClick={() => {
-            dispatch(addGate("NOT", { x: 0, y: 0 }));
-          }}
-        >
-          NOT
-        </a>
-        <a
-          class="dropdown-item"
-          onClick={() => {
-            dispatch(addGate("NAND", { x: 0, y: 0 }));
-          }}
-        >
-          NAND
-        </a>
-        <a
-          class="dropdown-item"
-          onClick={() => {
-            dispatch(addGate("NOR", { x: 0, y: 0 }));
-          }}
-        >
-          NOR
-        </a>
-        <a
-          class="dropdown-item"
-          onClick={() => {
-            dispatch(addGate("XOR", { x: 0, y: 0 }));
-          }}
-        >
-          XOR
-        </a>
-        <a
-          class="dropdown-item"
-          onClick={() => {
-            dispatch(addGate("XNOR", { x: 0, y: 0 }));
-          }}
-        >
-          XNOR
-        </a>
-      </div>
+      <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+        <li>
+          <a
+            class="dropdown-item"
+            onClick={() => {
+              dispatch(addGate("AND", { x: 400, y: 400 }));
+            }}
+          >
+            AND
+          </a>
+        </li>
+        <li>
+          <a
+            class="dropdown-item"
+            onClick={() => {
+              dispatch(addGate("OR", { x: 0, y: 0 }));
+            }}
+          >
+            OR
+          </a>
+        </li>
+        <li>
+          <a
+            class="dropdown-item"
+            onClick={() => {
+              dispatch(addGate("NOT", { x: 0, y: 0 }));
+            }}
+          >
+            NOT
+          </a>
+        </li>
+        <li>
+          <div class="dropdown-divider"></div>
+        </li>
+        <li>
+          <a
+            class="dropdown-item"
+            onClick={() => {
+              dispatch(addGate("INPUT", { x: 0, y: 0 }));
+            }}
+          >
+            INPUT
+          </a>
+        </li>
+        <li>
+          <a
+            class="dropdown-item"
+            onClick={() => {
+              dispatch(addGate("OUTPUT", { x: 0, y: 0 }));
+            }}
+          >
+            OUTPUT
+          </a>
+        </li>
+      </ul>
 
       <button
         type="button"

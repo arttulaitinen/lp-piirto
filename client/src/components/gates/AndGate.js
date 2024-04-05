@@ -1,13 +1,9 @@
 import React from "react";
+import "./gates.css";
 
 const AndGate = (props) => (
   <div
-    style={{
-      width: 50,
-      height: 30,
-      backgroundColor: "red",
-      textAlign: "center",
-    }}
+    className="gates andGate"
     {...props}
   >
     AND

@@ -1,18 +1,18 @@
+.container {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 .drawing-area {
+  position: relative;
   width: 900px;
   height: 900px;
   background-color: rgb(230, 230, 235);
   align-items: center;
-  overflow: hidden;
   border-radius: 20px;
   border: 1px solid black;
-  position: static;
-}
-
-.container {
-  display: flex;
-  justify-content: center;
-  align-items: center;
 }
 
 .gridlines {

@@ -1,15 +1,6 @@
-import React from 'react';
+import React from "react";
+import "./gates.css";
 
-const NotGate = (props) => (
-  <div style={{ 
-       width: 50, 
-       height: 30, 
-       backgroundColor: 'cyan',
-       textAlign: 'center' 
-    }} 
-    {...props}>
-    NOT
-  </div>
-)
-  
-  export default NotGate
+const NotGate = (props) => <div className="gates notGate" {...props}></div>;
+
+export default NotGate;

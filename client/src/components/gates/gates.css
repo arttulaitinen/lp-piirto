@@ -1,0 +1,39 @@
+.gates {
+  position: relative;
+  bottom: 0;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  background-color: rgb(230, 230, 235);
+  transform: scale(0.5);
+}
+
+.input {
+  background-image: url("./img/input.png");
+  width: 70px !important;
+  height: 33px !important;
+}
+
+.output {
+  background-image: url("./img/output.png");
+  width: 70px !important;
+  height: 33px !important;
+}
+
+.andGate {
+  background-image: url("./img/andGate.png");
+  width: 174px;
+  height: 65px;
+}
+
+.orGate {
+  background-image: url("./img/orGate.png");
+  width: 164px;
+  height: 69px;
+}
+
+.notGate {
+  background-image: url("./img/notGate.png");
+  width: 173px;
+  height: 62px;
+}
