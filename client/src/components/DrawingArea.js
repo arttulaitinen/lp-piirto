@@ -37,55 +37,34 @@ const DrawingArea = () => {
     switch (gate.gateType) {
       case "AND":
         return (
-          <Draggable
-            //bounds=".drawing-area"
-            onStop={(e, data) => handleStop(e, data, gate.id, gate.gateType)}
-          >
             <div>
               <AndGate />
             </div>
-          </Draggable>
         );
       case "OR":
         return (
-          <Draggable
-            onStop={(e, data) => handleStop(e, data, gate.id, gate.gateType)}
-          >
-            <div>
-              <OrGate />
-            </div>
-          </Draggable>
-        );
+          <div>
+            <OrGate />
+          </div>
+      );
       case "NOT":
         return (
-          <Draggable
-            onStop={(e, data) => handleStop(e, data, gate.id, gate.gateType)}
-          >
-            <div>
-              <NotGate />
-            </div>
-          </Draggable>
-        );
+          <div>
+            <NotGate />
+          </div>
+      );
       case "INPUT":
         return (
-          <Draggable
-            onStop={(e, data) => handleStop(e, data, gate.id, gate.gateType)}
-          >
-            <div>
-              <InputGate />
-            </div>
-          </Draggable>
-        );
+          <div>
+            <InputGate />
+          </div>
+      );
       case "OUTPUT":
         return (
-          <Draggable
-            onStop={(e, data) => handleStop(e, data, gate.id, gate.gateType)}
-          >
-            <div>
-              <OutputGate />
-            </div>
-          </Draggable>
-        );
+          <div>
+            <OutputGate />
+          </div>
+      );
       default:
         return;
     }
@@ -97,10 +76,22 @@ const DrawingArea = () => {
         className={`drawing-area ${isGridVisible ? "gridlines" : ""}`}
         onClick={handleClick}
       >
-        {gates.map((gate) => renderGate(gate))}
+        {gates.map((gate) => (
+          <Draggable
+            bounds="parent"
+            key={gate.id}
+            onStop={(e, data) => handleStop(e, data, gate.id, gate.gateType)}
+            style={{
+              position: "relative"
+            }}
+          >
+            {renderGate(gate)}
+          </Draggable>
+        ))}
       </div>
     </div>
   );
+  
 };
 
 export default DrawingArea;

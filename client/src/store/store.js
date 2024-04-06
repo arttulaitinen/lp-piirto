@@ -2,13 +2,7 @@ import { configureStore } from "@reduxjs/toolkit";
 import rootReducer from "./reducers";
 
 const initialState = {
-  gates: [
-    {
-      id: "291e9f86-3141-43af-9314-942cc95602a1",
-      gateType: "AND",
-      position: { x: 348, y: 415 },
-    },
-  ],
+  gates: [],
   connections: [],
   isConnectMode: false,
   isGridVisible: false,

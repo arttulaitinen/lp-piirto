@@ -3,14 +3,17 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  width: 900px;
+  height: 900px;
 }
 
 .drawing-area {
   position: relative;
+  display: flex;
+  align-items: center;
   width: 900px;
   height: 900px;
   background-color: rgb(230, 230, 235);
-  align-items: center;
   border-radius: 20px;
   border: 1px solid black;
 }
