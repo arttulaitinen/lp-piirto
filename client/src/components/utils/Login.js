@@ -36,14 +36,10 @@ const Login = () => {
       .then((data) => {
         // Kirjautuminen onnistui
         if (data.success) {
-          console.log("Kirjautuminen onnistui", data);
-          localStorage.setItem("token", data.token);
-          localStorage.setItem("username", data.username);
-          window.location.href = "/";
+          console.log("Kirjautuminen onnistui");
         } else {
           throw new error(data.message);
         }
-        console.log(data);
       })
       .catch((error) => {
         // Kirjautuminen epäonnistui
