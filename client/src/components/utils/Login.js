@@ -47,7 +47,7 @@ const Login = () => {
       })
       .catch((error) => {
         // Kirjautuminen epäonnistui
-        serError(error.message);
+        setError(error.message);
         console.error("Kirjautuminen epäonnistui", error);
       });
   };
