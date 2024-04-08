@@ -60,7 +60,13 @@ app.post("/users/login", (req, res) => {
     (u) => u.username === username && u.password === password
   );
   if (user) {
-    res.json({ success: true, message: "Login successful" });
+    try {
+      const data = JSON.parse(fs.readFileSync("data.json"));
+      const userState = data.find((d) => d.userId === user.userId);
+      res.json({ success: true, message: "Login successful", userState });
+    } catch (e) {
+      res.status(500).json({ success: false, message: "Error reading data" });
+    }
   } else {
     res.json({ success: false, message: "Invalid credentials" });
   }
