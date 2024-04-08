@@ -18,9 +18,6 @@ const Login = () => {
   };
 
   const handleLogin = () => {
-    var username;
-    var password;
-
     // Palvelimelle lähtevä pyyntö (JSON muodossa)
     fetch("users/login", {
       method: "POST",
@@ -38,10 +35,19 @@ const Login = () => {
       })
       .then((data) => {
         // Kirjautuminen onnistui
+        if (data.success) {
+          console.log("Kirjautuminen onnistui", data);
+          localStorage.setItem("token", data.token);
+          localStorage.setItem("username", data.username);
+          window.location.href = "/";
+        } else {
+          throw new error(data.message);
+        }
         console.log(data);
       })
       .catch((error) => {
         // Kirjautuminen epäonnistui
+        serError(error.message);
         console.error("Kirjautuminen epäonnistui", error);
       });
   };
