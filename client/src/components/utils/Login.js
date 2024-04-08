@@ -4,11 +4,15 @@ implementaatio => määrittele variablet username ja password,
 fetch() API:lla => /login endpoint palvelimen handleriin,
 */
 import React, { useState } from "react";
+import { useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
+import { setUserState } from "../../actions/userActions";
 
 const Login = () => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [error, serError] = useState("");
+  const dispatch = useDispatch();
 
   const handleUsernameChange = (event) => {
     setUsername(event.target.value);
@@ -37,6 +41,8 @@ const Login = () => {
         // Kirjautuminen onnistui
         if (data.success) {
           console.log("Kirjautuminen onnistui");
+          dispatch(setUserState(data.user));
+          localStorage.setItem("userState", JSON.stringify(data.user));
         } else {
           throw new error(data.message);
         }
