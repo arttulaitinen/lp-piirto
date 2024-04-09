@@ -61,6 +61,7 @@ app.post("/users/login", (req, res) => {
   );
   if (user) {
     try {
+      // Datan lukeminen ja käyttäjän tilan palauttaminen
       const data = JSON.parse(fs.readFileSync("data.json"));
       const userState = data.find((d) => d.userId === user.userId);
       res.json({ success: true, message: "Login successful", userState });
