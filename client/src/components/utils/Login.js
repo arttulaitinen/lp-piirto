@@ -11,7 +11,7 @@ import { setUserState } from "../../actions/userActions";
 const Login = () => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
-  const [error, serError] = useState("");
+  const [error, setError] = useState("");
   const dispatch = useDispatch();
 
   const handleUsernameChange = (event) => {
