@@ -1,8 +1,7 @@
-/* Kirjautumisen front-end toteutus
-Login komponentti, joka sisältää input-kentät käyttäjänimen ja salasanan syöttämiseen sekä login-napin.
-implementaatio => määrittele variablet username ja password,
-fetch() API:lla => /login endpoint palvelimen handleriin,
-*/
+// Kirjautumisen front-end toteutus
+// Login komponentti, joka sisältää input-kentät käyttäjänimen ja salasanan syöttämiseen sekä login-napin.
+// fetch() API:lla => /login endpoint palvelimen handleriin,
+
 import React, { useState } from "react";
 import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
