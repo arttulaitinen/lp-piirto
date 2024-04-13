@@ -65,9 +65,13 @@ const gatesReducer = (state = initialState, action) => {
           return gate; 
         }
       });
-        // laajenna
-        default:
-          return state;
+    case "DELETE_GATE":
+      return {
+        ...state,
+        gates: state.gates.filter((gate) => gate.id !== action.gateId)
+      };
+    default:
+      return state;
   }
 };
 

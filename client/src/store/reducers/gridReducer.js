@@ -7,7 +7,7 @@ const gridReducer = (state = initialState, action) => {
     case "TOGGLE_GRID":
       return {
         ...state,
-        isGridVisible: !state.isGridVisible,
+        isGridVisible: !state.isGridVisible
       };
     default:
       return state;

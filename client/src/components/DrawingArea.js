@@ -21,16 +21,13 @@ const DrawingArea = () => {
   const connections = useSelector((state) => state.connections);
   const isConnectMode = useSelector((state) => state.isConnectMode);
 
-  const [lineStart, setLineStart] = useState(null);
-  const [lineEnd, setLineEnd] = useState(null);
-
   const handleClick = (event, gateType) => {
     const position = { x: event.clientX, y: event.clientY };
     console.log("Clicked at:", position, gateType);
     console.log(gates);
-    console.log(lineStart);
-    console.log(lineEnd);
+    console.log(connections);
 
+    
   };
 
   const handleStop = (event, data, gateId, gateType) => {
@@ -74,12 +71,24 @@ const DrawingArea = () => {
     }
   };
 
+  const renderConnections = () => {
+    return connections.map((connection) => (
+        <line
+            x1={connection.start.x} 
+            y1={connection.start.y}
+            x2={connection.end.x}  
+            y2={connection.end.y}
+            stroke="black"  
+            strokeWidth="2"   
+        />
+    ));
+  };
+  
   return (
     <div className="container">
       <div
         className={`drawing-area ${isGridVisible ? "gridlines" : ""}`}
-        onClick={handleClick}
-      >
+        onClick={handleClick}>
         {gates.map((gate) => (
           <Draggable
             bounds="parent"
@@ -92,6 +101,9 @@ const DrawingArea = () => {
             {renderGate(gate)}
           </Draggable>
         ))}
+        <svg style={{ position: 'relative', top: 500, left: -30, width: '100%', height: '100%' }}> 
+          {renderConnections()}
+        </svg>
       </div>
     </div>
   );
