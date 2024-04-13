@@ -1,3 +1,5 @@
+// Reducer käyttäjän tilan hallintaan
+
 const initialState = {
   user: null,
   isLoggedIn: false,

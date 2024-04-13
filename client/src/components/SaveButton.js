@@ -2,6 +2,8 @@ import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { saveProgress } from "../actions/saveProgress";
 
+// Komponentti, joka renderöi tallennuspainikkeen ja kutsuu saveProgress-funktiota.
+
 const SaveButton = () => {
     const dispatch = useDispatch();
     const userId = useSelector((state) => state.auth.userId);
@@ -15,3 +17,5 @@ const SaveButton = () => {
         <button onClick={handleSaveProgress}>Tallenna</button>
     );
 };
+
+export default SaveButton;
