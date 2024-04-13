@@ -86,9 +86,8 @@ const DrawingArea = () => {
             id={gate.id}
             key={gate.id}
             onStop={(e, data) => handleStop(e, data, gate.id, gate.gateType)}
-            style={{
-              position: "relative"
-            }}
+            style={{ position: 'relative' }} 
+            position={gate.position}
           >
             {renderGate(gate)}
           </Draggable>

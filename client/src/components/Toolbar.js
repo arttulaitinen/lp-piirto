@@ -107,7 +107,7 @@ export default function Toolbar({ ShowInfo, Save }) {
         Ruudukko
       </button>
 
-      <SaveButton />
+      
     </div>
   );
 }
