@@ -7,10 +7,10 @@ import connectionModeReducer from './connectionModeReducer';
 
 const rootReducer = combineReducers({
   gates: gatesReducer,
-  cursor: cursorReducer,
   connections: connectionsReducer,
   isConnectMode: connectionModeReducer,
   isGridVisible: gridReducer,
+  hoveredElement: cursorReducer,
 });
 
 export default rootReducer;

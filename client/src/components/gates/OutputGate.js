@@ -1,13 +1,17 @@
-import React from "react";
+import React, { useState } from "react";
 import "./gates.css";
 import { useSelector } from 'react-redux'; 
 
 const OutputGate = (props) => {
-  const active = false;
+  const [active, setActive] = useState(false);
+  
+  const handleDoubleClick = () => {
+    setActive(!active);
+  };
 
   return (
     <div className="output" {...props}>
-      <div className={`outoutput1 ${active ? 'active' : 'inactive'}`}></div>
+      <div className={`outoutput1 ${active ? 'active' : 'inactive'}`} onDoubleClick={handleDoubleClick}></div>
       {active ? (
         <span className="tekstiout">1</span>
       ) : (

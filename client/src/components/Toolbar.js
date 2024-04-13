@@ -6,7 +6,7 @@ import {
   deleteConnection,
 } from "../store/actions/connectionsActions";
 import { toggleConnectMode } from "../store/actions/connectionModeActions";
-import { addGate, deleteGate } from "../store/actions/gatesActions";
+import { addGate, deleteGate, addInputGate, addOutputGate, addNotGate } from "../store/actions/gatesActions";
 import { toggleGrid } from "../store/actions/gridActions";
 import "./Toolbar.css";
 
@@ -51,7 +51,7 @@ export default function Toolbar({ ShowInfo, Save }) {
           <a
             class="dropdown-item"
             onClick={() => {
-              dispatch(addGate("NOT", { x: 0, y: 0 }));
+              dispatch(addNotGate("NOT", { x: 0, y: 0 }));
             }}
           >
             NOT
@@ -64,7 +64,7 @@ export default function Toolbar({ ShowInfo, Save }) {
           <a
             class="dropdown-item"
             onClick={() => {
-              dispatch(addGate("INPUT", { x: 0, y: 0 }));
+              dispatch(addInputGate("INPUT", { x: 0, y: 0 }));
             }}
           >
             INPUT
@@ -74,7 +74,7 @@ export default function Toolbar({ ShowInfo, Save }) {
           <a
             class="dropdown-item"
             onClick={() => {
-              dispatch(addGate("OUTPUT", { x: 0, y: 0 }));
+              dispatch(addOutputGate("OUTPUT", { x: 0, y: 0 }));
             }}
           >
             OUTPUT
@@ -85,9 +85,9 @@ export default function Toolbar({ ShowInfo, Save }) {
       <button
         type="button"
         className={`border btn btn-light mx-1`}
-        onClick={() => dispatch(toggleConnectMode())}
+        onClick={() => dispatch()}
       >
-        Yhteys
+        Poista
       </button>
 
       <button

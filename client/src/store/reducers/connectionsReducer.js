@@ -10,7 +10,8 @@ const connectionsReducer = (state = initialState, action) => {
         {
           fromGateId: action.payload.fromGateId,
           toGateId: action.payload.toGateId,
-          toInputIndex: action.payload.toInputIndex,
+          startPos: action.payload.startPos,
+          endPos: action.payload.endPos,
         },
       ];
     case "DELETE_CONNECTION":

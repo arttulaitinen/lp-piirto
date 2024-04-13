@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useRef, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import AndGate from "./gates/AndGate";
 import OrGate from "./gates/OrGate";
@@ -11,6 +11,7 @@ import { toggleGrid } from "../store/actions/gridActions";
 import "./DrawingArea.css";
 import Draggable from "react-draggable";
 
+
 const DrawingArea = () => {
   const dispatch = useDispatch();
   const gates = useSelector((state) => state.gates);
@@ -20,13 +21,16 @@ const DrawingArea = () => {
   const connections = useSelector((state) => state.connections);
   const isConnectMode = useSelector((state) => state.isConnectMode);
 
+  const [lineStart, setLineStart] = useState(null);
+  const [lineEnd, setLineEnd] = useState(null);
+
   const handleClick = (event, gateType) => {
     const position = { x: event.clientX, y: event.clientY };
     console.log("Clicked at:", position, gateType);
-    //dispatch(setCursorPosition(position));
     console.log(gates);
-    console.log(connections);
-    console.log(isConnectMode);
+    console.log(lineStart);
+    console.log(lineEnd);
+
   };
 
   const handleStop = (event, data, gateId, gateType) => {
@@ -79,6 +83,7 @@ const DrawingArea = () => {
         {gates.map((gate) => (
           <Draggable
             bounds="parent"
+            id={gate.id}
             key={gate.id}
             onStop={(e, data) => handleStop(e, data, gate.id, gate.gateType)}
             style={{

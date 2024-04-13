@@ -6,7 +6,7 @@ fetch() API:lla => /login endpoint palvelimen handleriin,
 import React, { useState } from "react";
 import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
-import { setUserState } from "../../actions/userActions";
+//import { setUserState } from "../../actions/userActions";
 
 const Login = () => {
   const [username, setUsername] = useState("");
@@ -41,7 +41,7 @@ const Login = () => {
         // Kirjautuminen onnistui
         if (data.success) {
           console.log("Kirjautuminen onnistui");
-          dispatch(setUserState(data.user));
+          //dispatch(setUserState(data.user));
           localStorage.setItem("userState", JSON.stringify(data.user));
         } else {
           throw new error(data.message);
@@ -49,7 +49,7 @@ const Login = () => {
       })
       .catch((error) => {
         // Kirjautuminen epäonnistui
-        setError(error.message);
+        //setError(error.message);
         console.error("Kirjautuminen epäonnistui", error);
       });
   };
