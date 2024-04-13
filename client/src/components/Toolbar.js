@@ -9,6 +9,7 @@ import { toggleConnectMode } from "../store/actions/connectionModeActions";
 import { addGate, deleteGate, addInputGate, addOutputGate, addNotGate } from "../store/actions/gatesActions";
 import { toggleGrid } from "../store/actions/gridActions";
 import "./Toolbar.css";
+import { SaveButton } from "./SaveButton";
 
 export default function Toolbar({ ShowInfo, Save }) {
   const dispatch = useDispatch();
@@ -106,13 +107,7 @@ export default function Toolbar({ ShowInfo, Save }) {
         Ruudukko
       </button>
 
-      <button
-        type="button"
-        class="border btn btn-light mx-1"
-        onClick={() => dispatch(Save())}
-      >
-        Tallenna ja poistu
-      </button>
+      <SaveButton />
     </div>
   );
 }

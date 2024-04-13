@@ -1,8 +1,7 @@
-/* Kirjautumisen front-end toteutus
-Login komponentti, joka sisältää input-kentät käyttäjänimen ja salasanan syöttämiseen sekä login-napin.
-implementaatio => määrittele variablet username ja password,
-fetch() API:lla => /login endpoint palvelimen handleriin,
-*/
+// Kirjautumisen front-end toteutus
+// Login komponentti, joka sisältää input-kentät käyttäjänimen ja salasanan syöttämiseen sekä login-napin.
+// POST-pyyntö palvelimelle, joka sisältää JSON-muotoisen käyttäjänimen ja salasanan.
+
 import React, { useState } from "react";
 import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
@@ -11,7 +10,7 @@ import { useDispatch } from "react-redux";
 const Login = () => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
-  const [error, serError] = useState("");
+  const [error, setError] = useState("");
   const dispatch = useDispatch();
 
   const handleUsernameChange = (event) => {
@@ -55,7 +54,7 @@ const Login = () => {
   };
   return (
     <div>
-      <h2>Login</h2>
+      <h2>Kirjaudu sisään</h2>
       <input
         type="text"
         placeholder="Käyttäjänimi"
@@ -68,7 +67,7 @@ const Login = () => {
         value={password}
         onChange={handlePasswordChange}
       />
-      <button onClick={handleLogin}>Login</button>
+      <button onClick={handleLogin}>Kirjaudu</button>
       {error && <p>{error}</p>}
     </div>
   );
