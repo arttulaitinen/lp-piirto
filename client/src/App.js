@@ -7,13 +7,8 @@ import Login from "./components/utils/Login";
 import "./App.css";
 
 function App() {
-  // Login
-  //const [user, setUser] = useState(null);
-  //const [isLogin, setIsLogin] = useState(false);
-  //const handleLogin = (user) => {
-  //  setUser(user);
-  //  setIsLogin(true);
-  //}
+  // Lisää login = reititys?
+
   return (
     <div className="app-container">
       <Toolbar />
