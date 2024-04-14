@@ -27,6 +27,7 @@ const DrawingArea = () => {
     console.log("Clicked at:", position, gateType);
     console.log(gates);
     console.log(connections);
+    console.log(isConnectMode);
   };
 
   const handleStop = (event, data, gateId, gateType) => {
@@ -97,7 +98,7 @@ const DrawingArea = () => {
             {renderGate(gate)}
           </Draggable>
         ))}
-        <svg style={{ position: 'relative', width: '100%', height: '100%' }}> 
+        <svg style={{ position: 'relative', pointerEvents: !isConnectMode ? 'none' : 'auto' }} >
           {renderConnections()}
         </svg>
       </div>

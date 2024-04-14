@@ -13,7 +13,6 @@ import { SaveButton } from "./SaveButton";
 
 export default function Toolbar({ ShowInfo, Save }) {
   const dispatch = useDispatch();
-  const isConnectMode = useSelector((state) => state.isConnectMode);
 
   return (
     <div className="toolbar">
@@ -82,6 +81,14 @@ export default function Toolbar({ ShowInfo, Save }) {
           </a>
         </li>
       </ul>
+
+      <button
+        type="button"
+        className={`border btn btn-light mx-1`}
+        onClick={() => dispatch(toggleConnectMode())}
+      >
+        Yhteydet
+      </button>
 
       <button
         type="button"
