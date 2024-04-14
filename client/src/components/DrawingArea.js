@@ -11,6 +11,7 @@ import { toggleGrid } from "../store/actions/gridActions";
 import "./DrawingArea.css";
 import Draggable from "react-draggable";
 
+import BezierLine from "./BezierLine";
 
 const DrawingArea = () => {
   const dispatch = useDispatch();
@@ -26,8 +27,6 @@ const DrawingArea = () => {
     console.log("Clicked at:", position, gateType);
     console.log(gates);
     console.log(connections);
-
-    
   };
 
   const handleStop = (event, data, gateId, gateType) => {
@@ -73,14 +72,11 @@ const DrawingArea = () => {
 
   const renderConnections = () => {
     return connections.map((connection) => (
-        <line
-            x1={connection.start.x} 
-            y1={connection.start.y}
-            x2={connection.end.x}  
-            y2={connection.end.y}
-            stroke="black"  
-            strokeWidth="2"   
-        />
+      <BezierLine
+        key={`${connection.start.x}-${connection.start.y}-${connection.end.x}-${connection.end.y}`}
+        start={connection.start}
+        end={connection.end}
+      />
     ));
   };
   
@@ -101,7 +97,7 @@ const DrawingArea = () => {
             {renderGate(gate)}
           </Draggable>
         ))}
-        <svg style={{ position: 'relative', top: 500, left: -30, width: '100%', height: '100%' }}> 
+        <svg style={{ position: 'relative', width: '100%', height: '100%' }}> 
           {renderConnections()}
         </svg>
       </div>
