@@ -40,11 +40,6 @@ const DrawingArea = (props) => {
     dispatch(updateGatePosition(gateId, gateType, { x: data.x, y: data.y }));
   };
 
-  const handleConnectionStop = (event, connectionId, start, end) => {
-    console.log(connectionId, { x: start.x, y: start.y }, { x: end.x, y: end.y })
-    dispatch(updateConnectionPosition(connectionId, { x: start.x, y: start.y }, { x: end.x, y: end.y }));
-  };
-
   const renderGate = (gate) => {
     switch (gate.gateType) {
       case "AND":
@@ -117,7 +112,6 @@ const DrawingArea = (props) => {
               index={connection.index}
               start={connection.start}
               end={connection.end}
-              onMouseUp={(e) => handleConnectionStop(e, connection.id, connection.start, connection.end)}
             />))}
           </svg>
       </div>

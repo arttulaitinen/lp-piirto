@@ -10,9 +10,9 @@ const connectionsReducer = (state = initialState, action) => {
         {
         },
       ];
-    case "UPDATE_GATE_POSITION":
+    case "UPDATE_CONNECTION_POSITION":
       return state.map((connection) => {
-        if (connection.id === action.payload.id) {
+        if (connection.index === action.payload.index) {
           return { ...connection, start: action.payload.start, end: action.payload.end };
         } else {
           return connection; 

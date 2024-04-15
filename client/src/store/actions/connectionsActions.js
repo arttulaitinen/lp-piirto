@@ -10,9 +10,9 @@ export const deleteConnection = (fromGateId, toGateId) => ({
   payload: { fromGateId, toGateId }
 });
 
-export const updateConnectionPosition = (id, start, end) => {
+export const updateConnectionPosition = (index, start, end) => {
   return {
     type: UPDATE_CONNECTION_POSITION,
-    payload: { id, start, end } 
+    payload: { index, start, end } 
   };
 };
