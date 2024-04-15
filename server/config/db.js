@@ -1,7 +1,7 @@
-require("dotenv").config();
 const mysql = require("mysql");
+const { promisify } = require("util");
 
-// Katso .env tiedosto
+// Katso .env
 const pool = mysql.createPool({
   host: process.env.DB_HOST,
   user: process.env.DB_USER,
@@ -9,14 +9,16 @@ const pool = mysql.createPool({
   database: process.env.DB_DATABASE,
 });
 
+const query = promisify(pool.query).bind(pool);
+
 let sql = "SELECT * FROM tiedot";
 
-pool.execute(sql, (err, result) => {
-  if (err) {
-    console.log(err);
-  } else {
+query(sql)
+  .then((result) => {
     console.log(result);
-  }
-});
+  })
+  .catch((err) => {
+    console.log(err);
+  });
 
-module.exports = pool.promise();
+module.exports = pool;

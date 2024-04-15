@@ -1,8 +1,11 @@
+require("dotenv").config();
+
 const express = require("express");
 const bodyParser = require("body-parser");
 const path = require("path");
 const fs = require("fs");
 const Post = require("./models/Post.js");
+const cors = require("cors");
 
 const app = express();
 const PORT = 3000;
@@ -18,6 +21,8 @@ Post.fetchAll()
 
 // Middleware
 app.use(bodyParser.json());
+app.use("/api", require("./routes/postRoutes"));
+app.use(cors());
 
 // Save endpoint
 app.post("/users/save", (req, res) => {
