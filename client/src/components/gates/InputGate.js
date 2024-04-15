@@ -6,13 +6,13 @@ import { changeStatus } from "../../store/actions/gatesActions";
 const InputGate = (props) => {
     const [active, setActive] = useState(false);
   
-    const handleDoubleClick = () => {
+    const handleClick = () => {
       setActive(!active);
     };
     
     return (
         <div className="input" {...props}>
-          <div className={`ininput1 ${active ? 'active' : 'inactive'}`} onDoubleClick={handleDoubleClick}></div>
+          <div className={`ininput1 ${active ? 'active' : 'inactive'}`} onClick={handleClick}></div>
           {active ? (
             <span className="teksti">1</span>
           ) : (

@@ -5,7 +5,7 @@ import { useSelector } from 'react-redux';
 const NotGate = (props) => {
   const [active, setActive] = useState(false);
   
-  const handleDoubleClick = () => {
+  const handleClick = () => {
     setActive(!active);
   };
   
@@ -21,8 +21,8 @@ const NotGate = (props) => {
   return (
     <div className="gates notGate" {...props}>
       <span style={{ position: 'relative', right: '14px' }}>NOT</span>
-      <div className={`notinput1 ${active ? 'active' : 'inactive'}`}onDoubleClick={handleDoubleClick}></div>
-      <div className={`output1 ${outputState ? 'active' : 'inactive'}`}onDoubleClick={handleDoubleClick}></div>
+      <div className={`notinput1 ${active ? 'active' : 'inactive'}`}onClick={handleClick}></div>
+      <div className={`output1 ${outputState ? 'active' : 'inactive'}`}onClick={handleClick}></div>
     </div>
   );
 };

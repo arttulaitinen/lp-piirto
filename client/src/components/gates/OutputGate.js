@@ -5,13 +5,13 @@ import { useSelector } from 'react-redux';
 const OutputGate = (props) => {
   const [active, setActive] = useState(false);
   
-  const handleDoubleClick = () => {
+  const handleClick = () => {
     setActive(!active);
   };
 
   return (
     <div className="output" {...props}>
-      <div className={`outoutput1 ${active ? 'active' : 'inactive'}`} onDoubleClick={handleDoubleClick}></div>
+      <div className={`outoutput1 ${active ? 'active' : 'inactive'}`} onClick={handleClick}></div>
       {active ? (
         <span className="tekstiout">1</span>
       ) : (

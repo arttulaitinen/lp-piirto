@@ -5,9 +5,13 @@ const initialState = {
 const connectionModeReducer = (state = initialState, action) => {
   switch (action.type) {
     case "TOGGLE_CONNECT_MODE":
-      return { ...state, isConnectMode: !state.isConnectMode };
+      if (state.isConnectMode) {
+        return { isConnectMode: false };
+      } else {
+        return { isConnectMode: true };
+      }
     default:
-      return state;
+      return false;
   }
 };
 

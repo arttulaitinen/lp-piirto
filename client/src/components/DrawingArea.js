@@ -1,5 +1,5 @@
 import React, { useState, useRef, useEffect } from "react";
-import { useSelector, useDispatch } from "react-redux";
+import { useSelector, useDispatch, connect } from "react-redux";
 import AndGate from "./gates/AndGate";
 import OrGate from "./gates/OrGate";
 import NotGate from "./gates/NotGate";
@@ -13,21 +13,26 @@ import Draggable from "react-draggable";
 
 import BezierLine from "./BezierLine";
 
-const DrawingArea = () => {
+const DrawingArea = (props) => {
   const dispatch = useDispatch();
   const gates = useSelector((state) => state.gates);
   const cursor = useSelector((state) => state.cursor);
   const isGridVisible = useSelector((state) => state.isGridVisible);
 
   const connections = useSelector((state) => state.connections);
-  const isConnectMode = useSelector((state) => state.isConnectMode);
 
   const handleClick = (event, gateType) => {
     const position = { x: event.clientX, y: event.clientY };
     console.log("Clicked at:", position, gateType);
     console.log(gates);
     console.log(connections);
-    console.log(isConnectMode);
+    console.log(props.isConnectMode);
+  };
+
+  const [isConnectMode, setIsConnectMode] = useState(false);
+
+  const handleDoubleClick = () => {
+    setIsConnectMode(!isConnectMode);
   };
 
   const handleStop = (event, data, gateId, gateType) => {
@@ -73,19 +78,23 @@ const DrawingArea = () => {
 
   const renderConnections = () => {
     return connections.map((connection) => (
-      <BezierLine
-        key={`${connection.start.x}-${connection.start.y}-${connection.end.x}-${connection.end.y}`}
-        start={connection.start}
-        end={connection.end}
-      />
-    ));
+      <svg style={{ position: 'relative', pointerEvents: isConnectMode ? '' : 'none' }}>
+        <BezierLine
+          key={connection.index}
+          index={connection.index}
+          start={connection.start}
+          end={connection.end}
+        />
+      </svg>));
+
   };
   
   return (
     <div className="container">
       <div
         className={`drawing-area ${isGridVisible ? "gridlines" : ""}`}
-        onClick={handleClick}>
+        onClick={handleClick}
+        onDoubleClick={handleDoubleClick}>
         {gates.map((gate) => (
           <Draggable
             bounds="parent"
@@ -98,13 +107,19 @@ const DrawingArea = () => {
             {renderGate(gate)}
           </Draggable>
         ))}
-        <svg style={{ position: 'relative', pointerEvents: !isConnectMode ? 'none' : 'auto' }} >
+          <svg style={{ position: 'relative', pointerEvents: isConnectMode ? '' : 'none' }}>
           {renderConnections()}
-        </svg>
+          </svg>
       </div>
     </div>
   );
   
 };
 
-export default DrawingArea;
+const mapStateToProps = (state) => {
+  return {
+    isConnectMode: state.isConnectMode,
+  };
+};
+
+export default connect(mapStateToProps)(DrawingArea); 
