@@ -5,6 +5,7 @@ import gridReducer from "./gridReducer";
 import connectionsReducer from "./connectionsReducer";
 import connectionModeReducer from "./connectionModeReducer";
 import deleteModeReducer from "./deleteModeReducer";
+import userReducer from "./userReducer";
 
 const rootReducer = combineReducers({
   gates: gatesReducer,

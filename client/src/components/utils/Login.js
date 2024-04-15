@@ -5,7 +5,7 @@
 import React, { useState } from "react";
 import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
-import { setUserState } from "../actions/userActions";
+import { setUserState } from "../../store/actions/userActions";
 
 const Login = () => {
   const [username, setUsername] = useState("");

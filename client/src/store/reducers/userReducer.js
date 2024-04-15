@@ -1,7 +1,6 @@
 // Reducer käyttäjän tilan hallintaan
-
 const initialState = {
-  userState: null,
+  user: [],
 };
 
 const userReducer = (state = initialState, action) => {
@@ -9,7 +8,7 @@ const userReducer = (state = initialState, action) => {
     case "SET_USER_STATE":
       return {
         ...state,
-        userState: action.payload,
+        user: action.payload,
       };
     default:
       return state;

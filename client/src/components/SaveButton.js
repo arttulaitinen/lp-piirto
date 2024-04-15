@@ -1,6 +1,6 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
-import saveProgress from "../store/actions/saveProgress";
+import { saveProgress } from "../components/utils/saveProgress";
 
 // Komponentti, joka renderöi tallennuspainikkeen ja kutsuu saveProgress-funktiota.
 

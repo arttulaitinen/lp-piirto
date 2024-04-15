@@ -8,6 +8,7 @@ const initialState = {
   isDeleteMode: false,
   isGridVisible: false,
   hoveredElement: null,
+  user: [],
 };
 
 export const store = configureStore({
