@@ -1,16 +1,18 @@
 // Reducer käyttäjän tilan hallintaan
 
 const initialState = {
-  user: null,
-  isLoggedIn: false,
-  loading: false,
-  error: null,
+  userState: null,
 };
 
 const userReducer = (state = initialState, action) => {
   switch (action.type) {
     case "SET_USER_STATE":
-      return { ...state, ...action.payload };
+      return {
+        ...state,
+        userState: action.payload,
+      };
+    default:
+      return state;
   }
 };
 

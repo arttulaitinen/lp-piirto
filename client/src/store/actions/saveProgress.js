@@ -1,4 +1,4 @@
-import { serializeState } from "../../utils/serializeState";
+import serializeState from "../../utils/serializeState";
 
 const saveProgress = (userId, reduxState) => {
   const serializedState = serializeState(reduxState);
