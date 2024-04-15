@@ -1,12 +1,15 @@
 import React, { useRef, useEffect } from 'react';
+import { useDispatch } from "react-redux";
 import { gsap } from 'gsap';
 import Draggable from 'gsap/Draggable'; 
+import { updateConnectionPosition } from "../store/actions/connectionsActions";
 
 import "./BezierLine.css";
 
 //koodin alunperin tehnyt @osublake https://codepen.io/osublake/pen/GMrExO
 
 const BezierLine = ({ index, start, end }) => {
+  const dispatch = useDispatch();
   let svgRef = useRef(null);
   let pathRef = useRef(null);
   let handle1Ref = useRef(null);
@@ -39,11 +42,17 @@ const BezierLine = ({ index, start, end }) => {
             } 
     };
 
+    const updateRedux = () => {
+      console.log(index, { x: start.x, y: start.y }, { x: end.x, y: end.y })
+      dispatch(updateConnectionPosition(index, { x: start.x, y: start.y }, { x: end.x, y: end.y }));
+    };
+
     gsap.set(handle1Ref.current, { x: start.x, y: start.y });
     gsap.set(handle2Ref.current, { x: end.x, y: end.y });
 
     Draggable.create([handle1Ref.current, handle2Ref.current], { 
-        onDrag: updatePath
+        onDrag: updatePath,
+        onRelease: updateRedux, 
     }); 
 
     updatePath();

@@ -7,6 +7,7 @@ import InputGate from "./gates/InputGate";
 import OutputGate from "./gates/OutputGate";
 import { setCursorPosition } from "../store/actions/cursorActions";
 import { updateGatePosition } from "../store/actions/gatesActions";
+import { updateConnectionPosition } from "../store/actions/connectionsActions";
 import { toggleGrid } from "../store/actions/gridActions";
 import "./DrawingArea.css";
 import Draggable from "react-draggable";
@@ -35,8 +36,13 @@ const DrawingArea = (props) => {
     setIsConnectMode(!isConnectMode);
   };
 
-  const handleStop = (event, data, gateId, gateType) => {
+  const handleGateStop = (event, data, gateId, gateType) => {
     dispatch(updateGatePosition(gateId, gateType, { x: data.x, y: data.y }));
+  };
+
+  const handleConnectionStop = (event, connectionId, start, end) => {
+    console.log(connectionId, { x: start.x, y: start.y }, { x: end.x, y: end.y })
+    dispatch(updateConnectionPosition(connectionId, { x: start.x, y: start.y }, { x: end.x, y: end.y }));
   };
 
   const renderGate = (gate) => {
@@ -78,15 +84,12 @@ const DrawingArea = (props) => {
 
   const renderConnections = () => {
     return connections.map((connection) => (
-      <svg style={{ position: 'relative', pointerEvents: isConnectMode ? '' : 'none' }}>
         <BezierLine
           key={connection.index}
           index={connection.index}
           start={connection.start}
           end={connection.end}
-        />
-      </svg>));
-
+        />));
   };
   
   return (
@@ -100,7 +103,7 @@ const DrawingArea = (props) => {
             bounds="parent"
             id={gate.id}
             key={gate.id}
-            onStop={(e, data) => handleStop(e, data, gate.id, gate.gateType)}
+            onStop={(e, data) => handleGateStop(e, data, gate.id, gate.gateType)}
             style={{ position: 'relative' }} 
             position={gate.position}
           >
@@ -108,7 +111,14 @@ const DrawingArea = (props) => {
           </Draggable>
         ))}
           <svg style={{ position: 'relative', pointerEvents: isConnectMode ? '' : 'none' }}>
-          {renderConnections()}
+          {connections.map((connection) => (
+            <BezierLine
+              key={connection.index}
+              index={connection.index}
+              start={connection.start}
+              end={connection.end}
+              onMouseUp={(e) => handleConnectionStop(e, connection.id, connection.start, connection.end)}
+            />))}
           </svg>
       </div>
     </div>

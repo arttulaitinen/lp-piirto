@@ -1,4 +1,4 @@
-import { ADD_CONNECTION, DELETE_CONNECTION} from './types';
+import { ADD_CONNECTION, DELETE_CONNECTION, UPDATE_CONNECTION_POSITION } from './types';
 
 export const addConnection = (fromGateId, toGateId, startPos, endPos) => ({
   type: ADD_CONNECTION,
@@ -9,3 +9,10 @@ export const deleteConnection = (fromGateId, toGateId) => ({
   type: DELETE_CONNECTION,
   payload: { fromGateId, toGateId }
 });
+
+export const updateConnectionPosition = (id, start, end) => {
+  return {
+    type: UPDATE_CONNECTION_POSITION,
+    payload: { id, start, end } 
+  };
+};
