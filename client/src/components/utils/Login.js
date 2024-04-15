@@ -5,7 +5,7 @@
 import React, { useState } from "react";
 import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
-//import { setUserState } from "../../actions/userActions";
+import { setUserState } from "../actions/userActions";
 
 const Login = () => {
   const [username, setUsername] = useState("");
@@ -40,16 +40,18 @@ const Login = () => {
         // Kirjautuminen onnistui
         if (data.success) {
           console.log("Kirjautuminen onnistui");
-          //dispatch(setUserState(data.user));
-          localStorage.setItem("userState", JSON.stringify(data.user));
+          const userData = data.userState;
+          dispatch(setUserState(userData));
+          localStorage.setItem("userId", data.user); // Katso server.js
+          localStorage.setItem("userState", JSON.stringify(data.userState));
         } else {
-          throw new error(data.message);
+          throw new Error(data.message);
         }
       })
       .catch((error) => {
         // Kirjautuminen epäonnistui
-        //setError(error.message);
-        console.error("Kirjautuminen epäonnistui", error);
+        setError(error.message);
+        console.error("Kirjautuminen epäonnistui");
       });
   };
   return (
