@@ -1,5 +1,4 @@
-const mysql = require("mysql");
-const { promisify } = require("util");
+const mysql = require("mysql2");
 
 // Katso .env
 const pool = mysql.createPool({
@@ -9,16 +8,11 @@ const pool = mysql.createPool({
   database: process.env.DB_NAME,
 });
 
-const query = promisify(pool.query).bind(pool);
-
 let sql = "SELECT * FROM tiedot";
 
-query(sql)
-  .then((result) => {
-    console.log(result);
-  })
-  .catch((err) => {
-    console.log(err);
-  });
+pool.execute(sql, function (err, result) {
+  if (err) throw err;
+  console.log(result);
+});
 
-module.exports = pool;
+module.exports = pool.promise();
