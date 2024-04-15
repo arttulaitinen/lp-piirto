@@ -5,24 +5,26 @@ const bodyParser = require("body-parser");
 const path = require("path");
 const fs = require("fs");
 const Post = require("./models/Post.js");
-const cors = require("cors");
+const { getUsers } = require("./controllers/postControllers.js");
 
 const app = express();
 const PORT = 3000;
 
 // Luetaan kaikki käyttäjät tietokannasta => users[]
 let users = [];
-Post.fetchAll()
-  .then(([rows, fields]) => {
-    users = rows;
-    console.log("Users fetched successfully");
-  })
-  .catch((err) => console.log(err));
 
 // Middleware
 app.use(bodyParser.json());
 app.use("/api", require("./routes/postRoutes"));
-app.use(cors());
+app.use(async (req, res, next) => {
+  try {
+    users = await getUsers();
+    console.log("Users fetched successfully");
+  } catch (error) {
+    console.error("Failed to fetch users:", error);
+  }
+  next();
+});
 
 // Save endpoint
 app.post("/users/save", (req, res) => {

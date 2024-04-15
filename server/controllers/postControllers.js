@@ -1,5 +1,4 @@
 const Post = require("../models/Post.js");
-import writeData from "../utils/jsonUtils";
 
 exports.getUsers = async (req, res, next) => {
   try {
