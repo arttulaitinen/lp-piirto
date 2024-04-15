@@ -2,7 +2,7 @@ const express = require("express");
 const bodyParser = require("body-parser");
 const path = require("path");
 const fs = require("fs");
-const Post = require("./Post");
+const Post = require("./models/Post.js");
 
 const app = express();
 const PORT = 3000;
