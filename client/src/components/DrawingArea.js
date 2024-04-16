@@ -22,12 +22,9 @@ const DrawingArea = (props) => {
 
   const connections = useSelector((state) => state.connections);
 
-  const handleClick = (event, gateType) => {
-    const position = { x: event.clientX, y: event.clientY };
-    console.log("Clicked at:", position, gateType);
+  const handleClick = (event) => {
     console.log(gates);
     console.log(connections);
-    console.log(props.isConnectMode);
   };
 
   const [isConnectMode, setIsConnectMode] = useState(false);
@@ -77,16 +74,7 @@ const DrawingArea = (props) => {
     }
   };
 
-  const renderConnections = () => {
-    return connections.map((connection) => (
-        <BezierLine
-          key={connection.index}
-          index={connection.index}
-          start={connection.start}
-          end={connection.end}
-        />));
-  };
-  
+
   return (
     <div className="container">
       <div
@@ -108,8 +96,8 @@ const DrawingArea = (props) => {
           <svg style={{ position: 'relative', pointerEvents: isConnectMode ? '' : 'none' }}>
           {connections.map((connection) => (
             <BezierLine
-              key={connection.index}
-              index={connection.index}
+              key={connection.id}
+              id={connection.id}
               start={connection.start}
               end={connection.end}
             />))}

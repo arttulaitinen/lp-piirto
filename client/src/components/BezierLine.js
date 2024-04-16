@@ -8,7 +8,7 @@ import "./BezierLine.css";
 
 //koodin alunperin tehnyt @osublake https://codepen.io/osublake/pen/GMrExO
 
-const BezierLine = ({ index, start: startProp, end: endProp }) => {
+const BezierLine = ({ id, start: startProp, end: endProp }) => {
   const dispatch = useDispatch();
   let svgRef = useRef(null);
   let pathRef = useRef(null);
@@ -52,8 +52,8 @@ const BezierLine = ({ index, start: startProp, end: endProp }) => {
       let newStart = { x: handlePropsA("x"), y: handlePropsA("y") };
       let newEnd = { x: handlePropsB("x"), y: handlePropsB("y") };
 
-      console.log(index, newStart, newEnd)
-      dispatch(updateConnectionPosition(index, newStart, newEnd));
+      console.log(id, newStart, newEnd)
+      dispatch(updateConnectionPosition(id, newStart, newEnd));
 
       setStart(newStart);
       setEnd(newEnd);

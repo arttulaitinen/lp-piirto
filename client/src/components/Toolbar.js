@@ -31,7 +31,7 @@ export default function Toolbar({ ShowInfo, Save }) {
           <a
             class="dropdown-item"
             onClick={() => {
-              dispatch(addGate("AND", { x: 400, y: 400 }));
+              dispatch(addGate("AND", { x: 250, y: -350 }));
             }}
           >
             AND
@@ -41,7 +41,7 @@ export default function Toolbar({ ShowInfo, Save }) {
           <a
             class="dropdown-item"
             onClick={() => {
-              dispatch(addGate("OR", { x: 0, y: 0 }));
+              dispatch(addGate("OR", { x: 250, y: -350 }));
             }}
           >
             OR
@@ -51,7 +51,7 @@ export default function Toolbar({ ShowInfo, Save }) {
           <a
             class="dropdown-item"
             onClick={() => {
-              dispatch(addNotGate("NOT", { x: 0, y: 0 }));
+              dispatch(addNotGate("NOT", { x: 250, y: -350 }));
             }}
           >
             NOT
@@ -64,7 +64,7 @@ export default function Toolbar({ ShowInfo, Save }) {
           <a
             class="dropdown-item"
             onClick={() => {
-              dispatch(addInputGate("INPUT", { x: 0, y: 0 }));
+              dispatch(addInputGate("INPUT", { x: 250, y: -350 }));
             }}
           >
             INPUT
@@ -74,7 +74,7 @@ export default function Toolbar({ ShowInfo, Save }) {
           <a
             class="dropdown-item"
             onClick={() => {
-              dispatch(addOutputGate("OUTPUT", { x: 0, y: 0 }));
+              dispatch(addOutputGate("OUTPUT", { x: 250, y: -350 }));
             }}
           >
             OUTPUT
@@ -85,9 +85,9 @@ export default function Toolbar({ ShowInfo, Save }) {
       <button
         type="button"
         className={`border btn btn-light mx-1`}
-        onClick={() => dispatch(toggleConnectMode())}
+        onClick={() => dispatch(addConnection({ x: 400, y: 100 }, { x: 150, y: 150 }))}
       >
-        Yhteydet
+        Lisää yhteys
       </button>
 
       <button

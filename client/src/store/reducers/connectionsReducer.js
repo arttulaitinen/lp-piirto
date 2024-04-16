@@ -1,3 +1,5 @@
+import { v4 as uuidv4 } from "uuid";
+
 const initialState = {
   connections: []
 };
@@ -8,11 +10,14 @@ const connectionsReducer = (state = initialState, action) => {
       return [
         ...state,
         {
+          id: uuidv4(),
+          start: action.payload.start,
+          end: action.payload.end,
         },
-      ];
+      ]; 
     case "UPDATE_CONNECTION_POSITION":
       return state.map((connection) => {
-        if (connection.index === action.payload.index) {
+        if (connection.id === action.payload.id) {
           return { ...connection, start: action.payload.start, end: action.payload.end };
         } else {
           return connection; 
