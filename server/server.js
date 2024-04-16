@@ -5,7 +5,7 @@ const bodyParser = require("body-parser");
 const path = require("path");
 const fs = require("fs");
 const Post = require("./models/Post.js");
-const { getUsers } = require("./controllers/postControllers.js");
+const postControllers = require("./controllers/postControllers");
 
 const app = express();
 const PORT = 3000;
