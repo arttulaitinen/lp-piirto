@@ -42,6 +42,30 @@
   height: 62px;
 }
 
+.nandGate {
+  background-image: url("./img/nandGate.png");
+  width: 174px;
+  height: 65px;
+}
+
+.norGate {
+  background-image: url("./img/norGate.png");
+  width: 169px;
+  height: 69px;
+}
+
+.xnorGate {
+  background-image: url("./img/xnorGate.png");
+  width: 174px;
+  height: 69px;
+}
+
+.xorGate {
+  background-image: url("./img/xorGate.png");
+  width: 173px;
+  height: 69px;
+}
+
 .inactiveio {
   width: 25px;
   height: 25px;

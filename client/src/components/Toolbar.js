@@ -64,6 +64,46 @@ export default function Toolbar({ isGridVisible, toggleGrid, isDeleteMode, toggl
           </a>
         </li>
         <li>
+          <a
+            class="dropdown-item"
+            onClick={() => {
+              dispatch(addGate("NAND", { x: 250, y: -350 }));
+            }}
+          >
+            NAND
+          </a>
+        </li>
+        <li>
+          <a
+            class="dropdown-item"
+            onClick={() => {
+              dispatch(addGate("NOR", { x: 250, y: -350 }));
+            }}
+          >
+            NOR
+          </a>
+        </li>
+        <li>
+          <a
+            class="dropdown-item"
+            onClick={() => {
+              dispatch(addGate("XOR", { x: 250, y: -350 }));
+            }}
+          >
+            XOR
+          </a>
+        </li>
+        <li>
+          <a
+            class="dropdown-item"
+            onClick={() => {
+              dispatch(addGate("XNOR", { x: 250, y: -350 }));
+            }}
+          >
+            XNOR
+          </a>
+        </li>
+        <li>
           <div class="dropdown-divider"></div>
         </li>
         <li>

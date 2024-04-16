@@ -5,6 +5,11 @@ import OrGate from "./gates/OrGate";
 import NotGate from "./gates/NotGate";
 import InputGate from "./gates/InputGate";
 import OutputGate from "./gates/OutputGate";
+import NandGate from "./gates/NandGate";
+import NorGate from "./gates/NorGate";
+import XnorGate from "./gates/XnorGate";
+import XorGate from "./gates/XorGate";
+
 import { setCursorPosition } from "../store/actions/cursorActions";
 import { deleteGate, updateGatePosition } from "../store/actions/gatesActions";
 import { updateConnectionPosition, deleteConnection } from "../store/actions/connectionsActions";
@@ -69,6 +74,30 @@ const DrawingArea = ({ isGridVisible, isDeleteMode, isConnectMode, toggleConnect
         return (
           <div id={gate.id} onClick={handleClick}>
             <OutputGate />
+          </div>
+      );
+      case "NAND":
+        return (
+          <div id={gate.id} onClick={handleClick}>
+            <NandGate />
+          </div>
+      );
+      case "NOR":
+        return (
+          <div id={gate.id} onClick={handleClick}>
+            <NorGate />
+          </div>
+      );
+      case "XNOR":
+        return (
+          <div id={gate.id} onClick={handleClick}>
+            <XnorGate />
+          </div>
+      );
+      case "XOR":
+        return (
+          <div id={gate.id} onClick={handleClick}>
+            <XorGate />
           </div>
       );
       default:
