@@ -4,7 +4,7 @@ import { saveProgress } from "../components/utils/saveProgress";
 
 // Komponentti, joka renderöi tallennuspainikkeen ja kutsuu saveProgress-funktiota.
 
-const SaveButton = () => {
+export const SaveButton = () => {
   const dispatch = useDispatch();
   const userId = localStorage.getItem("userId");
   const reduxState = useSelector((state) => state);
@@ -15,5 +15,3 @@ const SaveButton = () => {
 
   return <button onClick={handleSaveProgress}>Tallenna</button>;
 };
-
-export default SaveButton;
