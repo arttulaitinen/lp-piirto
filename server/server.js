@@ -9,12 +9,14 @@ const { getUsers } = require("./controllers/postControllers.js");
 
 const app = express();
 const PORT = 3000;
+const cors = require("cors");
 
 // Luetaan kaikki käyttäjät tietokannasta => users[]
 let users = [];
 
 // Middleware
 app.use(bodyParser.json());
+app.use(cors());
 app.use("/api", require("./routes/postRoutes"));
 app.use(async (req, res, next) => {
   try {

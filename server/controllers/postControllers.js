@@ -1,11 +1,11 @@
-const Post = require("../models/Post.js");
+const Post = require("../models/Post");
 
 exports.getUsers = async (req, res, next) => {
   try {
     const [users, _] = await Post.fetchAll();
     res.status(200).json({
       success: true,
-      data: data,
+      data: users,
     });
   } catch (error) {
     res.status(500).json({
