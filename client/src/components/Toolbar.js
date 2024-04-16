@@ -6,12 +6,23 @@ import {
   deleteConnection,
 } from "../store/actions/connectionsActions";
 import { toggleConnectMode } from "../store/actions/connectionModeActions";
-import { addGate, deleteGate, addInputGate, addOutputGate, addNotGate } from "../store/actions/gatesActions";
+import {
+  addGate,
+  deleteGate,
+  addInputGate,
+  addOutputGate,
+  addNotGate,
+} from "../store/actions/gatesActions";
 import { toggleGrid } from "../store/actions/gridActions";
 import "./Toolbar.css";
 import { SaveButton } from "./SaveButton";
 
-export default function Toolbar({ isGridVisible, toggleGrid, isDeleteMode, toggleDeleteMode }) { 
+export default function Toolbar({
+  isGridVisible,
+  toggleGrid,
+  isDeleteMode,
+  toggleDeleteMode,
+}) {
   const dispatch = useDispatch();
 
   return (
@@ -85,13 +96,15 @@ export default function Toolbar({ isGridVisible, toggleGrid, isDeleteMode, toggl
       <button
         type="button"
         className={`border btn btn-light mx-1`}
-        onClick={() => dispatch(addConnection({ x: 400, y: 100 }, { x: 150, y: 150 }))}
+        onClick={() =>
+          dispatch(addConnection({ x: 400, y: 100 }, { x: 150, y: 150 }))
+        }
       >
         Lisää yhteys
       </button>
 
-      <button 
-        type="button" 
+      <button
+        type="button"
         class="border btn btn-light mx-1"
         onClick={() => toggleDeleteMode()}
       >
@@ -105,6 +118,8 @@ export default function Toolbar({ isGridVisible, toggleGrid, isDeleteMode, toggl
       >
         Ruudukko
       </button>
+
+      <SaveButton />
     </div>
   );
 }
