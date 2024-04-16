@@ -22,7 +22,7 @@ const Login = () => {
 
   const handleLogin = () => {
     // Palvelimelle lähtevä pyyntö (JSON muodossa)
-    fetch("users/login", {
+    fetch("http://localhost:3000/users/login", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
