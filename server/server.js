@@ -17,6 +17,9 @@ let users = [];
 app.use(express.json());
 app.use(cors());
 
+// Uudelleenohjaus
+app.use("/api", require("./routes/postRoutes"));
+
 // Save endpoint
 app.post("/users/save", (req, res) => {
   const { userId, state } = req.body;
@@ -68,20 +71,22 @@ app.post("/users/login", (req, res) => {
           success: true,
           message: "Login successful",
           userState,
-          userId: user.userId,
+          user: user.userId,
         });
       } catch (e) {
         console.error("Error:", e);
-        res.status(500).json({ success: false, message: "An error occurred" });
+        res.json({
+          success: true,
+          message: "Login successful",
+          userState: null,
+          user: user.userId,
+        });
       }
     })
     .catch((error) => {
       console.error("Error fetching users:", error);
     });
 });
-
-// Muut reitit
-app.use("/api", require("./routes/postRoutes"));
 
 // Server start
 app.listen(PORT, () => {

@@ -1,17 +1,13 @@
+const express = require("express");
 const Post = require("../models/Post");
 
 exports.getUsers = async (req, res, next) => {
   try {
     const [users, _] = await Post.fetchAll();
-    res.status(200).json({
-      success: true,
-      data: users,
-    });
+    res.status(200).json({ users });
   } catch (error) {
-    res.status(500).json({
-      success: false,
-      error: error.message,
-    });
+    console.log(error);
+    next(error);
   }
 };
 exports.getUser = async (req, res, next) => {
@@ -22,10 +18,8 @@ exports.getUser = async (req, res, next) => {
       data: user,
     });
   } catch (error) {
-    res.status(500).json({
-      success: false,
-      error: error.message,
-    });
+    console.log(error);
+    next(error);
   }
 };
 exports.updateUser = async (req, res, next) => {
@@ -36,10 +30,8 @@ exports.updateUser = async (req, res, next) => {
       data: user,
     });
   } catch (error) {
-    res.status(500).json({
-      success: false,
-      error: error.message,
-    });
+    console.log(error);
+    next(error);
   }
 };
 exports.deleteUser = async (req, res, next) => {
@@ -50,9 +42,7 @@ exports.deleteUser = async (req, res, next) => {
       data: {},
     });
   } catch (error) {
-    res.status(500).json({
-      success: false,
-      error: error.message,
-    });
+    console.log(error);
+    next(error);
   }
 };
