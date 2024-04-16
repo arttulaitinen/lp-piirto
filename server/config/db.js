@@ -10,9 +10,9 @@ const pool = mysql.createPool({
 
 let sql = "SELECT * FROM tiedot";
 
-pool.execute(sql, function (err, result) {
-  if (err) throw err;
-  console.log(result);
-});
+//pool.execute(sql, function (err, result) {
+//  if (err) throw err;
+//  console.log(result);
+//});
 
 module.exports = pool.promise();
