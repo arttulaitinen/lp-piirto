@@ -16,16 +16,6 @@ let users = [];
 // Middleware
 app.use(express.json());
 app.use(cors());
-app.use(async (req, res, next) => {
-  try {
-    users = await getUsers();
-    console.log("Users fetched successfully");
-    next();
-  } catch (error) {
-    console.error("Failed to fetch users:", error);
-    next();
-  }
-});
 
 // Save endpoint
 app.post("/users/save", (req, res) => {
@@ -63,27 +53,31 @@ app.post("/users/add", (req, res) => {
 
 // Login endpoint
 app.post("/users/login", (req, res) => {
-  const { username, password } = req.body;
-  const user = users.find(
-    (u) => u.username === username && u.password === password
-  );
-  if (user) {
-    try {
-      // Datan lukeminen ja käyttäjän tilan palauttaminen
-      const data = JSON.parse(fs.readFileSync("data.json"));
-      const userState = data.find((d) => d.userId === user.userId);
-      res.json({
-        success: true,
-        message: "Login successful",
-        userState,
-        user: user.userId,
-      });
-    } catch (e) {
-      res.status(500).json({ success: false, message: "Error reading data" });
-    }
-  } else {
-    res.json({ success: false, message: "Invalid credentials" });
-  }
+  users = Post.fetchAll()
+    .then((users) => {
+      console.log(users);
+      const { username, password } = req.body;
+      const user = users.find(
+        (u) => u.username === username && u.password === password
+      );
+      try {
+        // Datan lukeminen toistaiseksi
+        const data = JSON.parse(fs.readFileSync("data.json"));
+        const userState = data.find((d) => d.userId === user.userId);
+        res.json({
+          success: true,
+          message: "Login successful",
+          userState,
+          userId: user.userId,
+        });
+      } catch (e) {
+        console.error("Error:", e);
+        res.status(500).json({ success: false, message: "An error occurred" });
+      }
+    })
+    .catch((error) => {
+      console.error("Error fetching users:", error);
+    });
 });
 
 // Muut reitit
