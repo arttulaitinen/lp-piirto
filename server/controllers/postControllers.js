@@ -5,7 +5,7 @@ exports.getUsers = async (req, res, next) => {
     const [users, _] = await Post.fetchAll();
     res.status(200).json({
       success: true,
-      data: data,
+      data: users,
     });
   } catch (error) {
     res.status(500).json({
