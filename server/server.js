@@ -13,20 +13,18 @@ const cors = require("cors");
 
 // Luetaan kaikki käyttäjät tietokannasta => users[]
 let users = [];
+(async () => {
+  try {
+    users = await getUsers();
+    console.log("Users fetched successfully");
+  } catch (error) {
+    console.error("Failed to fetch users:", error);
+  }
+})();
 
 // Middleware
 app.use(bodyParser.json());
 app.use(cors());
-app.use(async (req, res, next) => {
-  try {
-    users = await getUsers();
-    console.log("Users fetched successfully");
-    next();
-  } catch (error) {
-    console.error("Failed to fetch users:", error);
-    next();
-  }
-});
 
 // Save endpoint
 app.post("/users/save", (req, res) => {
