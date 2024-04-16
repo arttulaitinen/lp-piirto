@@ -22,10 +22,11 @@ app.use(async (req, res, next) => {
   try {
     users = await getUsers();
     console.log("Users fetched successfully");
+    next();
   } catch (error) {
     console.error("Failed to fetch users:", error);
+    next();
   }
-  next();
 });
 
 // Save endpoint
