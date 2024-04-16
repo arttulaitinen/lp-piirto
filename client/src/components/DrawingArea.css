@@ -16,6 +16,7 @@
   background-color: rgb(230, 230, 235);
   border-radius: 20px;
   border: 1px solid black;
+  overflow: hidden
 }
 
 .gridlines {
@@ -26,16 +27,6 @@
     ),
     linear-gradient(90deg, rgba(0, 0, 0, 0.1) 1px, transparent 1px);
   background-size: 20px 20px;
-}
-
-.drawing-wire {
-  position: absolute;
-  top: 50%;
-  left: 100%; 
-  width: 2px;
-  height: 2px;
-  background-color: black;
-  transition: width 0.3s ease-in-out;
 }
 
 .drawing-area svg {

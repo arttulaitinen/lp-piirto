@@ -6,15 +6,15 @@ import NotGate from "./gates/NotGate";
 import InputGate from "./gates/InputGate";
 import OutputGate from "./gates/OutputGate";
 import { setCursorPosition } from "../store/actions/cursorActions";
-import { updateGatePosition } from "../store/actions/gatesActions";
-import { updateConnectionPosition } from "../store/actions/connectionsActions";
+import { deleteGate, updateGatePosition } from "../store/actions/gatesActions";
+import { updateConnectionPosition, deleteConnection } from "../store/actions/connectionsActions";
 import { toggleGrid } from "../store/actions/gridActions";
 import "./DrawingArea.css";
 import Draggable from "react-draggable";
 
 import BezierLine from "./BezierLine";
 
-const DrawingArea = ({ isGridVisible, isDeleteMode }) => { 
+const DrawingArea = ({ isGridVisible, isDeleteMode, isConnectMode, toggleConnectMode }) => { 
   const dispatch = useDispatch();
   const gates = useSelector((state) => state.gates);
   const cursor = useSelector((state) => state.cursor);
@@ -24,18 +24,15 @@ const DrawingArea = ({ isGridVisible, isDeleteMode }) => {
   const handleClick = (event) => {
     console.log(gates);
     console.log(connections);
-    console.log(isDeleteMode);
-
-    console.log(event.id);
 
     if (isDeleteMode) {
+      console.log(event.currentTarget.id)
+      dispatch(deleteGate(event.currentTarget.id));
     }
   };
 
-  const [isConnectMode, setIsConnectMode] = useState(false);
-
   const handleDoubleClick = () => {
-    setIsConnectMode(!isConnectMode);
+    toggleConnectMode(!isConnectMode);
   };
 
   const handleGateStop = (event, data, gateId, gateType) => {
@@ -46,31 +43,31 @@ const DrawingArea = ({ isGridVisible, isDeleteMode }) => {
     switch (gate.gateType) {
       case "AND":
         return (
-            <div>
+            <div id={gate.id} onClick={handleClick}>
               <AndGate />
             </div>
         );
       case "OR":
         return (
-          <div>
+          <div id={gate.id} onClick={handleClick}>
             <OrGate />
           </div>
       );
       case "NOT":
         return (
-          <div>
+          <div id={gate.id} onClick={handleClick}>
             <NotGate />
           </div>
       );
       case "INPUT":
         return (
-          <div>
+          <div id={gate.id} onClick={handleClick}>
             <InputGate />
           </div>
       );
       case "OUTPUT":
         return (
-          <div>
+          <div id={gate.id} onClick={handleClick}>
             <OutputGate />
           </div>
       );
@@ -84,13 +81,12 @@ const DrawingArea = ({ isGridVisible, isDeleteMode }) => {
     <div className="container">
       <div
         className={`drawing-area ${isGridVisible ? "gridlines" : ""}`}
-        onClick={handleClick}
         onDoubleClick={handleDoubleClick}>
         {gates.map((gate) => (
           <Draggable
             bounds="parent"
-            id={gate.id}
             key={gate.id}
+            id={gate.id}
             onStop={(e, data) => handleGateStop(e, data, gate.id, gate.gateType)}
             style={{ position: 'relative' }} 
             position={gate.position}
@@ -105,6 +101,7 @@ const DrawingArea = ({ isGridVisible, isDeleteMode }) => {
               id={connection.id}
               start={connection.start}
               end={connection.end}
+              isDeleteMode={isDeleteMode}
             />))}
           </svg>
       </div>

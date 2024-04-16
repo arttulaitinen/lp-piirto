@@ -9,15 +9,18 @@ import "./App.css";
 function App() {
   const [isGridVisible, setIsGridVisible] = useState(false);
   const [isDeleteMode, setIsDeleteMode] = useState(false);
+  const [isConnectMode, setIsConnectMode] = useState(false);
   // Lisää login = reititys?
 
   return (
     <div className="app-container">
       <Toolbar isGridVisible={isGridVisible} toggleGrid={() => setIsGridVisible(!isGridVisible)} 
       isDeleteMode={isDeleteMode} toggleDeleteMode={() => setIsDeleteMode(!isDeleteMode)}
+      isConnectMode={isConnectMode}
     />
       <DrawingArea isGridVisible={isGridVisible} 
       isDeleteMode={isDeleteMode}
+      isConnectMode={isConnectMode} toggleConnectMode={() => setIsConnectMode(!isConnectMode)}
     />
     </div>
   );

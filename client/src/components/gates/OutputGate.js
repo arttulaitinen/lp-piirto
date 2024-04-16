@@ -11,7 +11,7 @@ const OutputGate = (props) => {
 
   return (
     <div className="output" {...props}>
-      <div className={`outoutput1 ${active ? 'active' : 'inactive'}`} onClick={handleClick}></div>
+      <div className={`outoutput1 ${active ? 'activeio' : 'inactiveio'}`} onClick={handleClick}></div>
       {active ? (
         <span className="tekstiout">1</span>
       ) : (

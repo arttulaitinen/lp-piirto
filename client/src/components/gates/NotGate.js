@@ -21,8 +21,8 @@ const NotGate = (props) => {
   return (
     <div className="gates notGate" {...props}>
       <span style={{ position: 'relative', right: '14px' }}>NOT</span>
-      <div className={`notinput1 ${active ? 'active' : 'inactive'}`}onClick={handleClick}></div>
-      <div className={`output1 ${outputState ? 'active' : 'inactive'}`}onClick={handleClick}></div>
+      <div className={`notinput1 ${active ? 'activeio' : 'inactiveio'}`}onClick={handleClick}></div>
+      <div className={`output1 ${outputState ? 'activeio' : 'inactiveio'}`}onClick={handleClick}></div>
     </div>
   );
 };

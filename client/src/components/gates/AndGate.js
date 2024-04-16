@@ -22,9 +22,9 @@ const AndGate = (props) => {
   return (
     <div className="gates andGate" {...props}>
       AND
-      <div className={`input1 ${active1 ? 'active' : 'inactive'}`}onClick={handleClick1}></div>
-      <div className={`input2 ${active2 ? 'active' : 'inactive'}`}onClick={handleClick2}></div>
-      <div className={`output1 ${outputState ? 'active' : 'inactive'}`}></div>
+      <div className={`input1 ${active1 ? 'activeio' : 'inactiveio'}`}onClick={handleClick1}></div>
+      <div className={`input2 ${active2 ? 'activeio' : 'inactiveio'}`}onClick={handleClick2}></div>
+      <div className={`output1 ${outputState ? 'activeio' : 'inactiveio'}`}></div>
     </div>
   );
 };

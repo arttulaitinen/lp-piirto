@@ -66,10 +66,7 @@ const gatesReducer = (state = initialState, action) => {
         }
       });
     case "DELETE_GATE":
-      return {
-        ...state,
-        gates: state.gates.filter((gate) => gate.id !== action.gateId)
-      };
+      return state.filter((gate) => gate.id !== action.payload.id);
     default:
       return state;
   }

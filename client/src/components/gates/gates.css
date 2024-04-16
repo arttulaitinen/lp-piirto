@@ -42,7 +42,7 @@
   height: 62px;
 }
 
-.inactive {
+.inactiveio {
   width: 25px;
   height: 25px;
   background-color: red;
@@ -51,12 +51,12 @@
   position: absolute;
 }
 
-.inactive:hover {
+.inactiveio:hover {
   width: 30px;
   height: 30px;
 }
 
-.active {
+.activeio {
   width: 25px;
   height: 25px;
   background-color: rgb(0, 255, 0);
@@ -65,7 +65,7 @@
   position: absolute;
 }
 
-.active:hover {
+.activeio:hover {
   width: 30px;
   height: 30px;
 }

@@ -12,7 +12,7 @@ const InputGate = (props) => {
     
     return (
         <div className="input" {...props}>
-          <div className={`ininput1 ${active ? 'active' : 'inactive'}`} onClick={handleClick}></div>
+          <div className={`ininput1 ${active ? 'activeio' : 'inactiveio'}`} onClick={handleClick}></div>
           {active ? (
             <span className="teksti">1</span>
           ) : (

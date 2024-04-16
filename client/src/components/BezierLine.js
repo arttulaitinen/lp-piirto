@@ -2,13 +2,13 @@ import React, { useRef, useEffect, useState } from 'react';
 import { useDispatch } from "react-redux";
 import { gsap } from 'gsap';
 import Draggable from 'gsap/Draggable'; 
-import { updateConnectionPosition } from "../store/actions/connectionsActions";
+import { updateConnectionPosition, deleteConnection } from "../store/actions/connectionsActions";
 
 import "./BezierLine.css";
 
 //koodin alunperin tehnyt @osublake https://codepen.io/osublake/pen/GMrExO
 
-const BezierLine = ({ id, start: startProp, end: endProp }) => {
+const BezierLine = ({ id, start: startProp, end: endProp, isDeleteMode }) => {
   const dispatch = useDispatch();
   let svgRef = useRef(null);
   let pathRef = useRef(null);
@@ -21,6 +21,12 @@ const BezierLine = ({ id, start: startProp, end: endProp }) => {
   const handles = [handle1Ref.current, handle2Ref.current]; 
 
   gsap.registerPlugin(Draggable); 
+
+  const handleClick = (event) => {
+    if (isDeleteMode) {
+      dispatch(deleteConnection(id)); 
+    }
+  };
 
   useEffect(() => {
     const updatePath = () => {  
@@ -75,7 +81,7 @@ const BezierLine = ({ id, start: startProp, end: endProp }) => {
 
 
   return (
-    <svg ref={svgRef}>
+    <svg ref={svgRef} onClick={handleClick}>
       <path ref={pathRef} className="path" /> 
       <circle ref={handle1Ref} className="handle" cx="0" cy="0" r="8" />
       <circle ref={handle2Ref} className="handle" cx="0" cy="0" r="8" />

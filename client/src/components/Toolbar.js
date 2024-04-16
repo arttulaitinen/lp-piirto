@@ -11,7 +11,7 @@ import { toggleGrid } from "../store/actions/gridActions";
 import "./Toolbar.css";
 import { SaveButton } from "./SaveButton";
 
-export default function Toolbar({ isGridVisible, toggleGrid, isDeleteMode, toggleDeleteMode }) { 
+export default function Toolbar({ isGridVisible, toggleGrid, isDeleteMode, toggleDeleteMode, isConnectMode}) { 
   const dispatch = useDispatch();
 
   return (
@@ -84,7 +84,7 @@ export default function Toolbar({ isGridVisible, toggleGrid, isDeleteMode, toggl
 
       <button
         type="button"
-        className={`border btn btn-light mx-1`}
+        class={`border btn btn-light mx-1 ${isConnectMode ? 'active' : ''}`}
         onClick={() => dispatch(addConnection({ x: 400, y: 100 }, { x: 150, y: 150 }))}
       >
         Lisää yhteys
@@ -92,7 +92,7 @@ export default function Toolbar({ isGridVisible, toggleGrid, isDeleteMode, toggl
 
       <button 
         type="button" 
-        class="border btn btn-light mx-1"
+        class={`border btn btn-light mx-1 ${isDeleteMode ? 'active' : ''}`}
         onClick={() => toggleDeleteMode()}
       >
         Poista
@@ -100,7 +100,8 @@ export default function Toolbar({ isGridVisible, toggleGrid, isDeleteMode, toggl
 
       <button
         type="button"
-        class="border btn btn-light mx-1"
+        class={`border btn btn-light mx-1 ${isGridVisible ? 'active' : ''}`}
+        aria-pressed="true"
         onClick={() => toggleGrid()}
       >
         Ruudukko

@@ -24,7 +24,7 @@ const connectionsReducer = (state = initialState, action) => {
         }
       });
     case "DELETE_CONNECTION":
-      return;
+      return state.filter((connection) => connection.id !== action.payload.id);
     default:
       return state;
   }
