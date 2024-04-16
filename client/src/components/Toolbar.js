@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 //MUISTA IMPORTTAA LOPUT ACTIONIT
 import {
@@ -11,7 +11,7 @@ import { toggleGrid } from "../store/actions/gridActions";
 import "./Toolbar.css";
 import { SaveButton } from "./SaveButton";
 
-export default function Toolbar({ ShowInfo, Save }) {
+export default function Toolbar({ isGridVisible, toggleGrid, isDeleteMode, toggleDeleteMode }) { 
   const dispatch = useDispatch();
 
   return (
@@ -90,10 +90,10 @@ export default function Toolbar({ ShowInfo, Save }) {
         Lisää yhteys
       </button>
 
-      <button
-        type="button"
-        className={`border btn btn-light mx-1`}
-        onClick={() => dispatch()}
+      <button 
+        type="button" 
+        class="border btn btn-light mx-1"
+        onClick={() => toggleDeleteMode()}
       >
         Poista
       </button>
@@ -101,20 +101,10 @@ export default function Toolbar({ ShowInfo, Save }) {
       <button
         type="button"
         class="border btn btn-light mx-1"
-        onClick={() => dispatch(ShowInfo())}
-      >
-        Näytä tiedot
-      </button>
-
-      <button
-        type="button"
-        class="border btn btn-light mx-1"
-        onClick={() => dispatch(toggleGrid())}
+        onClick={() => toggleGrid()}
       >
         Ruudukko
       </button>
-
-      
     </div>
   );
 }

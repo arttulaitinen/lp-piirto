@@ -14,17 +14,22 @@ import Draggable from "react-draggable";
 
 import BezierLine from "./BezierLine";
 
-const DrawingArea = (props) => {
+const DrawingArea = ({ isGridVisible, isDeleteMode }) => { 
   const dispatch = useDispatch();
   const gates = useSelector((state) => state.gates);
   const cursor = useSelector((state) => state.cursor);
-  const isGridVisible = useSelector((state) => state.isGridVisible);
 
   const connections = useSelector((state) => state.connections);
 
   const handleClick = (event) => {
     console.log(gates);
     console.log(connections);
+    console.log(isDeleteMode);
+
+    console.log(event.id);
+
+    if (isDeleteMode) {
+    }
   };
 
   const [isConnectMode, setIsConnectMode] = useState(false);
@@ -108,10 +113,4 @@ const DrawingArea = (props) => {
   
 };
 
-const mapStateToProps = (state) => {
-  return {
-    isConnectMode: state.isConnectMode,
-  };
-};
-
-export default connect(mapStateToProps)(DrawingArea); 
+export default DrawingArea; 
