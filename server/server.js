@@ -17,7 +17,6 @@ let users = [];
 // Middleware
 app.use(bodyParser.json());
 app.use(cors());
-app.use("/api", require("./routes/postRoutes"));
 app.use(async (req, res, next) => {
   try {
     users = await getUsers();
@@ -87,6 +86,9 @@ app.post("/users/login", (req, res) => {
     res.json({ success: false, message: "Invalid credentials" });
   }
 });
+
+// Muut reitit
+app.use("/api", require("./routes/postRoutes"));
 
 // Server start
 app.listen(PORT, () => {
