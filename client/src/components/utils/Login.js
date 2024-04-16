@@ -33,7 +33,9 @@ const Login = () => {
         if (response.ok) {
           return response.json();
         } else {
-          throw new Error("Virheellinen käyttäjätunnus tai salasana");
+          return response.text().then((errorMessage) => {
+            throw new Error(errorMessage || "Unexpected error occurred");
+          });
         }
       })
       .then((data) => {
