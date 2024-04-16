@@ -1,7 +1,6 @@
 require("dotenv").config();
 
 const express = require("express");
-const bodyParser = require("body-parser");
 const path = require("path");
 const fs = require("fs");
 const Post = require("./models/Post.js");
@@ -15,7 +14,7 @@ const cors = require("cors");
 let users = [];
 
 // Middleware
-app.use(bodyParser.json());
+app.use(express.json());
 app.use(cors());
 app.use(async (req, res, next) => {
   try {
