@@ -6,6 +6,7 @@ import connectionsReducer from "./connectionsReducer";
 import connectionModeReducer from "./connectionModeReducer";
 import deleteModeReducer from "./deleteModeReducer";
 import userReducer from "./userReducer";
+import authReducer from "./authReducer";
 
 const rootReducer = combineReducers({
   gates: gatesReducer,
@@ -15,6 +16,7 @@ const rootReducer = combineReducers({
   isGridVisible: gridReducer,
   hoveredElement: cursorReducer,
   user: userReducer,
+  auth: authReducer,
 });
 
 export default rootReducer;

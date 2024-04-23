@@ -6,6 +6,7 @@ import React, { useState } from "react";
 import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
 import { setUserState } from "../../store/actions/userActions";
+import { loginSuccess } from "../../store/actions/authActions";
 
 const Login = () => {
   const [username, setUsername] = useState("");
@@ -21,39 +22,29 @@ const Login = () => {
   };
 
   const handleLogin = () => {
-    // Palvelimelle lähtevä pyyntö (JSON muodossa)
     fetch("http://localhost:3000/users/login", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify({ username: username, password: password }),
+      body: JSON.stringify({ username, password }),
     })
       .then((response) => {
         if (response.ok) {
           return response.json();
         } else {
-          return response.text().then((errorMessage) => {
-            throw new Error(errorMessage || "Unexpected error occurred");
-          });
+          throw new Error("Login failed");
         }
       })
       .then((data) => {
-        // Kirjautuminen onnistui
         if (data.success) {
-          console.log("Kirjautuminen onnistui");
-          const userData = data.userState;
-          dispatch(setUserState(userData));
-          localStorage.setItem("userId", data.user); // Katso server.js
-          localStorage.setItem("userState", JSON.stringify(data.userState));
+          dispatch(loginSuccess(data.userState));
         } else {
           throw new Error(data.message);
         }
       })
       .catch((error) => {
-        // Kirjautuminen epäonnistui
         setError(error.message);
-        console.error("Kirjautuminen epäonnistui");
       });
   };
   return (
