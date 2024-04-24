@@ -48,7 +48,7 @@ const DrawingArea = ({ isGridVisible, isDeleteMode, isConnectMode, toggleConnect
     switch (gate.gateType) {
       case "AND":
         return (
-            <div id={gate.id} onClick={handleClick}>
+            <div id={gate.id} onClick={handleClick} data-testid="and-gate">
               <AndGate />
             </div>
         );
@@ -107,7 +107,7 @@ const DrawingArea = ({ isGridVisible, isDeleteMode, isConnectMode, toggleConnect
 
 
   return (
-    <div className="container">
+    <div className="container" data-testid="drawing-area">
       <div
         className={`drawing-area ${isGridVisible ? "gridlines" : ""}`}
         onDoubleClick={handleDoubleClick}>
@@ -123,7 +123,7 @@ const DrawingArea = ({ isGridVisible, isDeleteMode, isConnectMode, toggleConnect
             {renderGate(gate)}
           </Draggable>
         ))}
-          <svg style={{ position: 'relative', pointerEvents: isConnectMode ? '' : 'none' }}>
+          <svg style={{ position: 'relative', pointerEvents: isConnectMode ? '' : 'none' }} data-testid="connection" >
           {connections.map((connection) => (
             <BezierLine
               key={connection.id}
