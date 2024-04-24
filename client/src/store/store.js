@@ -9,6 +9,7 @@ const initialState = {
   isGridVisible: false,
   hoveredElement: null,
   user: [],
+  auth: [],
 };
 
 export const store = configureStore({

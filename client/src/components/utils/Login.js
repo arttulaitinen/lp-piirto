@@ -20,6 +20,9 @@ const Login = () => {
   const handlePasswordChange = (event) => {
     setPassword(event.target.value);
   };
+  const handleSkip = (event) => {
+    dispatch(loginSuccess());
+  };
 
   const handleLogin = () => {
     fetch("http://localhost:3000/users/login", {
@@ -63,6 +66,7 @@ const Login = () => {
         onChange={handlePasswordChange}
       />
       <button onClick={handleLogin}>Kirjaudu</button>
+      <button onClick={handleSkip}>Jatka kirjautumatta</button>
       {error && <p>{error}</p>}
     </div>
   );
